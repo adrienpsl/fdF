@@ -99,7 +99,6 @@ typedef struct		s_pile_y_
 {
 	int cu;
 	int lim;
-	int size_all;
 } 					t_pile_y_;
 
 typedef t_pile_y_ *t_pile_y;
@@ -107,15 +106,25 @@ typedef t_pile_y_ *t_pile_y;
 
 typedef struct		s_pile_visu_
 {
-	t_pile_y_ y;
+//	t_pile_y_ y;
+	int y;
 	int x1;
 	int x2;
-	int id_current_rec;
 	t_dll list_rec;
 	t_dll list_color;
 
 } 					t_pile_visu_;
 
 typedef t_pile_visu_ *t_pile_visu;
+
+
+typedef struct		s_wrong_link_00
+{
+	int nb;
+	int quick;
+} 					t_wrong_link_00;
+
+typedef t_wrong_link_00 *t_wrong_link;
+
 
 #endif //FDF_STRUCT_H

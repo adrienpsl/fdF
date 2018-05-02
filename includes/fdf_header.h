@@ -43,4 +43,9 @@
 
 void    recangle(t_fig_2 fig2, t_visu visu);
 
+long is_color(t_dll color_list, int quick);
+t_dll_l new_color_link(int quick, long color);
+int is_same_quick(t_dll_l color_link,int quick);
+void set_color(t_dll_l color_link, long color);
+
 #endif //FDF_FDF_HEADER_H

@@ -5,7 +5,7 @@ project(fdf C)
 set(CMAKE_C_STANDARD 99)
 #set(CMAKE_C_COMPILER "/usr/bin/gcc")
 
-#set ( CMAKE_C_FLAGS "-Wall -Wextra -Werror")
+set ( CMAKE_C_FLAGS "-Wall -Wextra -Werror")
 
 file(GLOB head "includes/*.h")
 #include_directories(${PROJECT_SOURCE_DIR}/include)
@@ -58,7 +58,7 @@ set(
         ${sources08}
 #
 #        ${sources000}
-)
+        src/main/color.c)
 
 add_executable(fdf
 
