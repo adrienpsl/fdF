@@ -208,6 +208,10 @@ void print_rec(t_push_rec rec)
 	ft_printf("======================== \n");
 }
 
+
+// il me faut figure fixe ici c'est la que ca bug, comme je la rappelle a chaque fois
+// dans ma liste chainer ca fait le bordel/
+
 void print_list(t_pile_visu visu, t_test test, t_dll_c pile)
 {
 	t_dll_l visu_link;
@@ -229,7 +233,7 @@ void print_list(t_pile_visu visu, t_test test, t_dll_c pile)
 	fig2->y_1 = 30;
 	temp = ((float)rec->nb_quick / (float)pile->length);
 	fig2->y_2 = (temp * 600) + 30;
-	fig2->y_1 += fig2->y_2;
+	fig2->y_1 = fig2->y_2;
 
 	recangle(fig2, test->visu);
 
@@ -245,7 +249,7 @@ void print_list(t_pile_visu visu, t_test test, t_dll_c pile)
 	fig2->x_2 = visu->x2;
 
 	temp = ((float)rec->nb_quick / (float)pile->length);
-	fig2->y_2 = (temp * 600);
+	fig2->y_2 = (temp * 600) + 30;
 	fig2->y_1 += fig2->y_2;
 
 	recangle(fig2, test->visu);
@@ -276,9 +280,8 @@ int main()
 	set_(455, 1, pile);
 	set_(4, 1, pile);
 	set_(4, 1, pile);
-	set_(4, 1, pile);
 
-//	set_(684, 3, pile);
+	set_(684, 3, pile);
 	set_(88, 3, pile);
 	set_(88, 3, pile);
 	//	set_(354, 3, pile);
