@@ -58,11 +58,11 @@ int get_nb(t_dll_l link)
 t_dll_l new_rec_link()
 {
 	t_dll_l visu_link;
-	t_push_rec_ rec;
+	t_rec_link_00 rec;
 	t_push_rec rec_link;
 
-	visu_link = new_dll_l(&rec, sizeof(t_push_rec_));
-	ft_memset(visu_link->content, 0, sizeof(t_push_rec_));
+	visu_link = new_dll_l(&rec, sizeof(t_rec_link_00));
+	ft_memset(visu_link->content, 0, sizeof(t_rec_link_00));
 	rec_link = visu_link->content;
 	rec_link->max = INT_MIN;
 	rec_link->min = INT_MAX;
@@ -145,7 +145,7 @@ t_fig_2 new_fig(int x1, int y1, int x2, int y2)
 {
 	t_fig_2 fig2;
 
-	fig2 = ft_malloc_protect(sizeof(t_fig_2_));
+	fig2 = ft_malloc_protect(sizeof(t_fig_2_00));
 	fig2->x_1 = x1;
 	fig2->y_1 = y1;
 	fig2->x_2 = x2;
@@ -210,49 +210,45 @@ void print_rec(t_push_rec rec)
 
 
 // il me faut figure fixe ici c'est la que ca bug, comme je la rappelle a chaque fois
-// dans ma liste chainer ca fait le bordel/
+
+
+void set_set(t_dll_l visu_link, t_fig_2 fig2, float size_all)
+{
+	t_push_rec rec;
+	float temp;
+
+	rec = visu_link->content;
+	fig2->color = rec->color;
+	temp = ((float) rec->nb_quick / size_all);
+
+	fig2->y_2 = (temp * 600) + 30;
+}
 
 void print_list(t_pile_visu visu, t_test test, t_dll_c pile)
 {
 	t_dll_l visu_link;
-	t_fig_2 fig2;
-	t_push_rec rec;
-	float temp;
+	t_fig_2_00 fig2;
 
 	visu_link = visu->list_rec->top;
 
-	rec = visu_link->content;
-	fig2 = &rec->fig2;
+	fig2.x_1 = visu->x1;
+	fig2.x_2 = visu->x2;
 
-	fig2->color = rec->color;
+	fig2.y_1 = 0;
 
-	ft_printf("------------ %d \n", fig2->color);
-	fig2->x_1 = visu->x1;
-	fig2->x_2 = visu->x2;
+	set_set(visu_link, &fig2, pile->length);
 
-	fig2->y_1 = 30;
-	temp = ((float)rec->nb_quick / (float)pile->length);
-	fig2->y_2 = (temp * 600) + 30;
-	fig2->y_1 = fig2->y_2;
+	trace_legend_rec(&fig2, test->visu, visu_link->content);
+	fig2.y_1 = fig2.y_2;
 
-	recangle(fig2, test->visu);
+	visu_link = visu_link->next;
+	set_set(visu_link, &fig2, pile->length);
+	recangle(&fig2, test->visu);
 
-	visu_link = visu->list_rec->top->next;
-
-	rec = visu_link->content;
-	fig2 = &rec->fig2;
-
-	fig2->color = rec->color;
-	ft_printf("------------  %d \n", fig2->color);
-
-	fig2->x_1 = visu->x1;
-	fig2->x_2 = visu->x2;
-
-	temp = ((float)rec->nb_quick / (float)pile->length);
-	fig2->y_2 = (temp * 600) + 30;
-	fig2->y_1 += fig2->y_2;
-
-	recangle(fig2, test->visu);
+	visu_link = visu_link->next;
+	set_set(visu_link, &fig2, pile->length);
+	recangle(&fig2, test->visu);
+	ft_printf("%d \n", fig2.y_2);
 }
 
 int main()
@@ -264,9 +260,6 @@ int main()
 
 	t_test_ test;
 	test.visu = visu;
-
-	t_dll color_lst;
-	t_dll_l color_link;
 
 	t_dll_c pile;
 	pile = new_dll_c();
@@ -284,13 +277,13 @@ int main()
 	set_(684, 3, pile);
 	set_(88, 3, pile);
 	set_(88, 3, pile);
+
+	set_(88, 4, pile);
+	set_(88, 4, pile);
+	set_(88, 4, pile);
 	//	set_(354, 3, pile);
 
 	dll_c_print_lst(pile);
-
-
-	//
-
 
 	t_dll pile_rec = t__1(pile, color_pile);
 	t__1(pile, color_pile);
@@ -310,76 +303,12 @@ int main()
 	p_visu->y = 300;
 
 	dll_c_print_lst(pile);
+	//	print_list(p_visu, &test, pile);
+
+	p_visu->x1 = 130;
+	p_visu->x2 = 160;
+
 	print_list(p_visu, &test, pile);
 
-
-
-
-
-
-	//
-
-	color_lst = new_dll();
-	color_link = new_color_link(0, 55);
-	dll_add(color_link, color_lst);
-
-	printf("%lX \n", is_color(color_lst, 1));
-	printf("%lX \n", is_color(color_lst, 2));
-	printf("%lX \n", is_color(color_lst, 31
-	));
-	printf("%lX \n", is_color(color_lst, 1));
-
 	mlx_loop(visu->mlx);
-
-	////	dll_add()
-	//	fig2 = new_fig(30, 30, 130, 430);
-
-	//
-	//	fig2->color = 0xf44260;
-	//	test.fig2 = fig2;
-	//	test.visu = visu;
-	////
-	//	recangle(fig2,visu);
-	//
-	//	fig2 = new_fig(130, 130, 230, 230);
-	//	fig2->color = 0xf44290;
-	//	recangle(fig2,visu);
-
-
-	//	mlx_key_hook(visu->window.ptr, deal_key, &test);
-
-
-
-
-
-	//	mlx_pixel_put(visu->mlx, visu->window.ptr, 30, 30,
-	//				  0xFFFFFF);
-
-
-	//		mlx_loop_hook(visu->mlx, loop_hook, &test);
-
-	//	void *mlx = mlx_init();
-	//	void *window = mlx_new_window(mlx, 300, 300, "test");
-	//	mlx_key_hook(window, deal_key, &test);
-	//	mlx_loop(mlx);
-
-	//
-	//	under = &visu->under;
-	//	pos = &under->pos;
-	//
-	//
-	//
-	//	under->widow = mlx_new_window(under->mlx, 1300, 1300, "test");
-	//
-	//	d_set_pos(30, 30, 130, 130, pos);
-	//	under->color = 0xFFFFFF;
-	////	recangle(under);
-	//
-	//
-	//	//	mlx_mouse_hook(window, deal_mouse, &l);
-	//	//
-	////	mlx_string_put(under->mlx, under->widow, 50,50,0xFFFFFF,"bobo");
-	//
-	//	mlx_loop(under->mlx);
-	//	return 0;
 }
