@@ -21,7 +21,7 @@ long get_color_2(t_dll_l color_link)
 
 void set_color(t_dll_l color_link, long color)
 {
-	((t_push_rec)color_link->content)->color = color;
+	((t_rec_link)color_link->content)->color = color;
 }
 
 
@@ -45,7 +45,7 @@ t_dll_l new_color_link(int quick, long color_hexa)
 long is_color(t_dll color_list, int quick)
 {
 	t_dll_l link;
-	static long color = 0xF44141;
+	static long color = 0x00004b;
 
 	link = color_list->top;
 	while (link)
@@ -54,8 +54,9 @@ long is_color(t_dll color_list, int quick)
 	       return (get_color_2(link));
 	   link = link->next;
 	}
-	color += 50;
+	color += 20;
 	link = new_color_link(quick, color);
 	dll_add(link, color_list);
+	ft_printf("%0x \n", color);
 	return (color);
 }

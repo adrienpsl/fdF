@@ -1,6 +1,8 @@
 #ifndef FDF_STRUCT_H
 #define FDF_STRUCT_H
 
+# include "../src/sources/ft_library_header.h"
+
 /*
 **    lines
 */
@@ -69,6 +71,7 @@ typedef struct s_rec_link_00
 	int min;
 	int max;
 	int quick;
+	float percent;
 } t_rec_link_00;
 
 typedef t_rec_link_00 *t_rec_link;
@@ -85,11 +88,13 @@ typedef t_mlx_data_00 *t_mlx_data;
 
 typedef struct		s_visualisateur_00
 {
+	t_mlx_data_00 mlx_data;
 	t_fig_2_00 fig2;
-	t_rec_link	rec_link;
-	t_dll rec_pile_1;
-	t_dll rec_pile_2;
+//	t_rec_link	rec_link;
+	t_dll rec_pile;
 	t_dll list_color;
+	t_dll_c pile_a;
+	t_dll_c pile_b;
 
 
 } 					t_visualisateur_00;

@@ -41,9 +41,9 @@
 //void d_set_pos(int x1, int y1, int x2, int y2, t_pos pos);
 //void print_pos(t_pos pos);
 
-void    recangle(t_fig_2 fig2, t_visu visu);
+void    recangle(t_fig_2 fig2, t_mlx_data mlx_data);
 
-void trace_legend_rec(t_fig_2 fig2, t_visu visu, t_push_rec rec);
+void trace_legend_rec(t_fig_2 fig2, t_mlx_data visu, t_rec_link rec);
 
 long is_color(t_dll color_list, int quick);
 t_dll_l new_color_link(int quick, long color);
