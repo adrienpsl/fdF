@@ -1,7 +1,7 @@
 #ifndef FDF_STRUCT_H
 #define FDF_STRUCT_H
 
-# include "../src/sources/ft_library_header.h"
+# include "../sources/ft_library_header.h"
 
 /*
 **    lines

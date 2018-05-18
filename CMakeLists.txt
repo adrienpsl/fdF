@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.9.4)
 
 project(fdf C)
 
@@ -11,12 +11,12 @@ file(GLOB head "includes/*.h")
 #include_directories(${PROJECT_SOURCE_DIR}/include)
 
 
-file(GLOB sources0 "src/*.c")
-file(GLOB sources1 "src/sources/src/**/*.c")
-file(GLOB sources2 "src/sources/src/**/**/*.c")
-file(GLOB sources3 "src/sources/src/**/**/**/*.c")
-file(GLOB sources4 "src/sources/src/**/**/**/**/*.c")
-file(GLOB sources5 "src/sources/src/**/**/**/**/**/*.c")
+file(GLOB sources0 "*.c")
+file(GLOB sources1 "sources/src/**/*.c")
+file(GLOB sources2 "sources/src/**/**/*.c")
+file(GLOB sources3 "sources/src/**/**/**/*.c")
+file(GLOB sources4 "sources/src/**/**/**/**/*.c")
+file(GLOB sources5 "sources/src/**/**/**/**/**/*.c")
 file(GLOB sources6 "test/*.c")
 
 
@@ -39,13 +39,13 @@ file(GLOB sources000 "mlx/*.c")
 # all sources
 set(
         sources
-#        ${sources0}
-#        ${sources1}
-#        ${sources2}
-#        ${sources3}
-#        ${sources4}
-#        ${sources5}
-#        ${sources6}
+        ${sources0}
+        ${sources1}
+        ${sources2}
+        ${sources3}
+        ${sources4}
+        ${sources5}
+        ${sources6}
 #
         ${sources00}
         ${sources01}

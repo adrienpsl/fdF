@@ -1,7 +1,7 @@
 #ifndef FDF_FDF_HEADER_H
 #define FDF_FDF_HEADER_H
 
-#include "../src/sources/ft_library_header.h"
+#include "../sources/ft_library_header.h"
 
 # include "../mlx/mlx.h"
 
