@@ -12,11 +12,12 @@
 
 #include "../includes/fdf_header.h"
 
-void new_mlx(int x, int y, t_mlx mlx, char *name)
+t_mlx new_mlx(int x, int y, char *name)
 {
 	int a;
 	int b;
 	int c;
+	t_mlx mlx;
 
 	mlx = ft_malloc_protect(sizeof(t_mlx_00));
 	mlx->mlx = mlx_init();
@@ -25,4 +26,5 @@ void new_mlx(int x, int y, t_mlx mlx, char *name)
 	mlx->window = mlx_new_window(mlx->mlx, x, y, name);
 	mlx->img = mlx_new_image(mlx->mlx, x - 25, y - 25);
 	mlx->str_img = mlx_get_data_addr(mlx->img, &a, &b, &c);
+	return (mlx);
 }

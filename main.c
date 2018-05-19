@@ -54,8 +54,27 @@
 //	}
 //}
 
-int main()
+
+// get les coordoner de la souris
+
+int get_souris_click(int button,int x,int y,void *param)
 {
 
+
+	ft_printf("%d %d \n", x, y);
+
+	return (TRUE);
+}
+
+
+int main()
+{
+	t_mlx mlx;
+
+	mlx = new_mlx(1000, 1000, "lala");
+	mlx_mouse_hook(mlx->window, get_souris_click, mlx);
+
+
+	mlx_loop(mlx->mlx);
 	return 0;
 }
