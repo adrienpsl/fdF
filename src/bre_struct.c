@@ -29,7 +29,6 @@
 //	t_pos pos;
 //
 //	pos = &under->pos;
-//	while (pos->x_1 != pos->x_2)
 //	{
 //		print_pxl(under);
 //		pos->x_1 -= 1;

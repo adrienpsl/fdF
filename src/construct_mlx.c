@@ -10,24 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/fdf_header.h"
+#include "../includes/fdf_header.h"
 
-//void d_set_pos(int x1, int y1, int x2, int y2, t_pos pos)
-//{
-//	pos->x_1 = x1;
-//	pos->y_1 = y1;
-//	pos->x_2 = x2;
-//	pos->y_2 = y2;
-//
-//	pos->dx = x2 - x1;
-//	pos->dy = y2 - y1;
-//
-////	ft_printf("%d %d %d %d\n", pos->x_1, pos->y_1, pos->x_2, pos->y_2);
-//}
+void new_mlx(int x, int y, t_mlx mlx, char *name)
+{
+	int a;
+	int b;
+	int c;
 
-//void print_pos(t_pos pos)
-//{
-//	ft_printf("dx : %d  || dy : %d || %d\n", pos->dx, pos->dy, pos->err);
-//	ft_printf("x_1 : %d  || y_1 : %d\n", pos->x_1, pos->y_1);
-//	ft_printf("x_2 : %d  || y_2 : %d\n", pos->x_2, pos->y_2);
-//}
+	mlx = ft_malloc_protect(sizeof(t_mlx_00));
+	mlx->mlx = mlx_init();
+	mlx->x = x - 25;
+	mlx->y = y - 25;
+	mlx->window = mlx_new_window(mlx->mlx, x, y, name);
+	mlx->img = mlx_new_image(mlx->mlx, x - 25, y - 25);
+	mlx->str_img = mlx_get_data_addr(mlx->img, &a, &b, &c);
+}

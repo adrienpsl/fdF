@@ -54,24 +54,8 @@
 //	}
 //}
 
-//int main()
-//{
-//	t_under under;
-//	t_pos pos;
-//
-//	under = malloc(sizeof(t_underr));
-//	pos = &under->pos;
-//
-//	under->mlx = mlx_init();
-//	under->widow = mlx_new_window(under->mlx, 300, 300, "test");
-//
-////	d_set_pos(50, 50, 200, 50, pos);
-////	horizon_left_right(under);
-//
-//
-//	//	mlx_key_hook(window, deal_key, &l);
-//	//	mlx_mouse_hook(window, deal_mouse, &l);
-//	//
-//	mlx_loop(under->mlx);
-//	return 0;
-//}
+int main()
+{
+
+	return 0;
+}
