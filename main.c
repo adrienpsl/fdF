@@ -13,22 +13,6 @@
 #include "includes/fdf_header.h"
 #include "mlx/mlx.h"
 
-//int deal_key(int key, void *param)
-//{
-//
-//	mlx_pixel_put(((t *) param)->M, ((t *) param)->widow, 250, 250, 0xFFFFFF);
-//	printf("%d \n", key);
-//	return (1);
-//}
-//
-//int deal_mouse(int button, int x, int y, void *param)
-//{
-//
-//	mlx_pixel_put(((t *) param)->M, ((t *) param)->widow, 250, 250, 0xFFFFFF);
-//	printf("%d %d %d\n", button, x, y);
-//	return (1);
-//}
-
 void dx_p_dy_p(t_fdf fdf)
 {
 	t_line l;
@@ -38,15 +22,15 @@ void dx_p_dy_p(t_fdf fdf)
 	l->dx = l->dx << 2;
 	l->dy = l->dy << 2;
 
-	while (++l->x_1 < l->x_2)
+	while (l->x_1 < l->x_2)
 	{
-		ft_printf("%d \n", l->e);
 		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
 		if ((l->e -= l->dy) < 0)
 		{
 			++l->y_1;
 			l->e += l->dx;
 		}
+		++l->x_1;
 	}
 }
 
@@ -59,15 +43,69 @@ void dy_p_dx_p(t_fdf fdf)
 	l->dy = l->dy << 2;
 	l->dx = l->dx << 2;
 
-	while (++l->y_1 < l->y_2)
+	while (l->y_1 < l->y_2)
 	{
-		ft_printf("%d \n", l->e);
 		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
 		if ((l->e -= l->dx) < 0)
 		{
 			++l->x_1;
 			l->e += l->dy;
 		}
+		l->y_1++;
+	}
+}
+
+void dx_p_dy_n(t_fdf fdf)
+{
+	t_line l;
+
+	l = &fdf->line;
+	l->e = l->dx;
+	l->dx = l->dx << 2;
+	l->dy = l->dy << 2;
+
+	while (l->x_1 != l->x_2)
+	{
+		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
+		if ((l->e += l->dy) < 0)
+		{
+			--l->y_1;
+			l->e += l->dx;
+		}
+		l->x_1++;
+	}
+}
+
+void dy_n_dx_p(t_fdf fdf)
+{
+	t_line l;
+
+	l = &fdf->line;
+	l->e = l->dy;
+	l->dy = l->dy << 2;
+	l->dx = l->dx << 2;
+
+	while (l->y_1 != l->y_2)
+	{
+		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
+		if ((l->e += l->dx) > 0)
+		{
+			++l->x_1;
+			l->e += l->dy;
+		}
+		l->y_1--;
+	}
+}
+
+void dx_p_dy_0(t_fdf fdf)
+{
+	t_line l;
+
+	l = &fdf->line;
+	while (l->x_1 != l->x_2)
+	{
+		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
+		++l->x_1;
 	}
 }
 
@@ -76,10 +114,30 @@ void trace_line(t_fdf fdf)
 	t_line line;
 
 	line = &fdf->line;
-	if (line->dx >= line->dy)
-		dx_p_dy_p(fdf);
-	else
-		dy_p_dx_p(fdf);
+
+	if (line->dx > 0)
+	{
+		if (line->dy != 0)
+		{
+			if (line->dy > 0)
+			{
+				if (line->dx >= line->dy)
+					dx_p_dy_p(fdf);
+				else
+					dy_p_dx_p(fdf);
+			}
+			else
+			{
+				ft_printf("%d %d \n", line->dx, line->dy);
+				if(line->dx >= -(line->dy))
+					dx_p_dy_n(fdf);
+				else
+					dy_n_dx_p(fdf);
+			}
+		}
+		else
+			dx_p_dy_0(fdf);
+	}
 }
 
 
