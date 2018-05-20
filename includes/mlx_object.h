@@ -3,21 +3,6 @@
 
 # include "../sources/ft_library_header.h"
 
-/*
-**    lines
-*/
-typedef struct s_line_
-{
-	int x_1;
-	int y_1;
-	int x_2;
-	int y_2;
-	int dx;
-	int dy;
-	int err;
-} t_line_;
-
-typedef t_line_ *t_line;
 
 typedef struct s_coord_
 {
@@ -84,7 +69,32 @@ typedef struct		s_visualisateur_00
 
 } 					t_visualisateur_00;
 
-typedef t_visualisateur_00 *t_visualisateur;
+/*
+**    lines
+*/
+typedef struct s_line_
+{
+	int x_1;
+	int y_1;
+	int x_2;
+	int y_2;
+	int dx;
+	int dy;
+	int e;
+} t_line_00;
+
+typedef t_line_00 *t_line;
+
+
+typedef struct		s_fdf_00
+{
+	t_mlx			mlx;
+	t_line_00			line;
+} 					t_fdf_00;
+
+typedef t_fdf_00 *t_fdf;
+
+
 
 
 

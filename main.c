@@ -29,29 +29,57 @@
 //	return (1);
 //}
 
-void do_seg(int x1, int y1, int x2, int y2, t_mlx mlx)
+void dx_p_dy_p(t_fdf fdf)
 {
-	int dx = x2 - x1;
-	int dy = y2 - y1;
-	int e;
+	t_line l;
 
+	l = &fdf->line;
+	l->e = l->dx;
+	l->dx = l->dx << 2;
+	l->dy = l->dy << 2;
 
-	ft_printf("%d %d \n", dx, dy);
-	dy = (y1 - y2) * 2;
-	e = dx;
-	dx = e * 2;
-
-	while (x1 < x2)
+	while (++l->x_1 < l->x_2)
 	{
-		++x1;
-		fill_pixel(mlx, x1, y1, 0xFFFFFF);
-		if (e -= dy >= 0)
+		ft_printf("%d \n", l->e);
+		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
+		if ((l->e -= l->dy) < 0)
 		{
-			++y1;
-			e += dx;
+			++l->y_1;
+			l->e += l->dx;
 		}
-		x2--;
 	}
+}
+
+void dy_p_dx_p(t_fdf fdf)
+{
+	t_line l;
+
+	l = &fdf->line;
+	l->e = l->dy;
+	l->dy = l->dy << 2;
+	l->dx = l->dx << 2;
+
+	while (++l->y_1 < l->y_2)
+	{
+		ft_printf("%d \n", l->e);
+		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
+		if ((l->e -= l->dx) < 0)
+		{
+			++l->x_1;
+			l->e += l->dy;
+		}
+	}
+}
+
+void trace_line(t_fdf fdf)
+{
+	t_line line;
+
+	line = &fdf->line;
+	if (line->dx >= line->dy)
+		dx_p_dy_p(fdf);
+	else
+		dy_p_dx_p(fdf);
 }
 
 
@@ -59,40 +87,30 @@ void do_seg(int x1, int y1, int x2, int y2, t_mlx mlx)
 
 int get_souris_click(int button, int x, int y, void *param)
 {
-	static int i = 2;
-	static int x1 = 0;
-	static int x2 = 0;
-	static int y1 = 0;
-	static int y2 = 0;
-	t_mlx mlx = param;
+	static int i = 0;
+	t_fdf fdf = param;
+	t_mlx mlx = fdf->mlx;
+	t_line line = &fdf->line;
 
-	(void) button;
-	(void) param;
-	(void) x;
-	(void) y;
-	//
-	//	if (i == 0)
-	//	{
-	//		x1 = x;
-	//		y1 = y;
-	//		++i;
-	//	}
-	//
-	//	else if (i == 1)
-	//	{
-	//		x2 = x;
-	//		y2 = y;
-	//		++i;
-	//	}
+	if (i == 0)
+	{
+		set_line_1(x, y, line);
+		++i;
+	}
+
+	else if (i == 1)
+	{
+		set_line_2(x, y, line);
+		++i;
+	}
 
 	if (i == 2)
 	{
-		//		do_seg(x1, y1, x2, y2, param);
-		do_seg(150, 300, 500, 150, param);
+		trace_line(fdf);
 		mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
 		i = 0;
 	}
-	ft_printf("%d %d %d %d %d \n", i, x1, y1, x2, y2);
+	ft_printf("%d \n", button);
 
 	return (TRUE);
 }
@@ -100,13 +118,12 @@ int get_souris_click(int button, int x, int y, void *param)
 int main()
 {
 	t_mlx mlx;
+	t_fdf_00 fdf;
 
 	mlx = new_mlx(1000, 1000, "lala");
+	fdf.mlx = mlx;
 
-	do_seg(150, 150, 500, 300, mlx);
-	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
-
-	mlx_mouse_hook(mlx->window, get_souris_click, mlx);
+	mlx_mouse_hook(mlx->window, get_souris_click, &fdf);
 
 	mlx_loop(mlx->mlx);
 	return 0;
