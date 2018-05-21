@@ -109,6 +109,126 @@ void dx_p_dy_0(t_fdf fdf)
 	}
 }
 
+void dx_n_dy_p(t_fdf fdf)
+{
+	t_line l;
+
+	l = &fdf->line;
+	l->e = l->dx;
+	l->dy = l->dy << 2;
+	l->dx = l->dx << 2;
+
+	while (l->x_1 != l->x_2)
+	{
+		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
+		if ((l->e += l->dy) >= 0)
+		{
+			++l->y_1;
+			l->e += l->dx;
+		}
+		l->x_1--;
+	}
+}
+
+void dy_p_dx_n(t_fdf fdf)
+{
+	t_line l;
+
+	l = &fdf->line;
+	l->e = l->dy;
+	l->dy = l->dy << 2;
+	l->dx = l->dx << 2;
+
+	while (l->y_1 != l->y_2)
+	{
+		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
+		if ((l->e += l->dx) <= 0)
+		{
+			--l->x_1;
+			l->e += l->dy;
+		}
+		l->y_1++;
+	}
+}
+
+void dy_n_dx_n(t_fdf fdf)
+{
+	t_line l;
+
+	l = &fdf->line;
+	l->e = l->dx;
+	l->dy = l->dy << 2;
+	l->dx = l->dx << 2;
+
+	while (l->x_1 != l->x_2)
+	{
+		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
+		if ((l->e -= l->dy) >= 0)
+		{
+			--l->y_1;
+			l->e += l->dx;
+		}
+		l->x_1--;
+	}
+}
+
+void dy_0_dx_n(t_fdf fdf)
+{
+	t_line l;
+
+	l = &fdf->line;
+	while (l->x_1 != l->x_2)
+	{
+		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
+		--l->x_1;
+	}
+}
+
+void dx_n_dy_n(t_fdf fdf)
+{
+	t_line l;
+
+	l = &fdf->line;
+	l->e = l->dy;
+	l->dy = l->dy << 2;
+	l->dx = l->dx << 2;
+
+	while (l->y_1 != l->y_2)
+	{
+		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
+		if ((l->e -= l->dx) >= 0)
+		{
+			--l->x_1;
+			l->e += l->dy;
+		}
+		--l->y_1;
+	}
+}
+
+void dy_p_dx_0(t_fdf fdf)
+{
+	t_line l;
+
+	l = &fdf->line;
+	while (l->y_1 != l->y_2)
+	{
+		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
+		++l->y_1;
+	}
+}
+
+void dx_0_dy_n(t_fdf fdf)
+{
+	t_line l;
+
+	l = &fdf->line;
+	while (l->y_1 != l->y_2)
+	{
+		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
+		--l->y_1;
+	}
+}
+
 void trace_line(t_fdf fdf)
 {
 	t_line line;
@@ -128,8 +248,7 @@ void trace_line(t_fdf fdf)
 			}
 			else
 			{
-				ft_printf("%d %d \n", line->dx, line->dy);
-				if(line->dx >= -(line->dy))
+				if (line->dx >= -(line->dy))
 					dx_p_dy_n(fdf);
 				else
 					dy_n_dx_p(fdf);
@@ -137,6 +256,35 @@ void trace_line(t_fdf fdf)
 		}
 		else
 			dx_p_dy_0(fdf);
+	}
+	else if (line->dx < 0)
+	{
+		if (line->dy != 0)
+		{
+			if (line->dy > 0)
+			{
+				if (-(line->dx) >= line->dy)
+					dx_n_dy_p(fdf);
+				else
+					dy_p_dx_n(fdf);
+			}
+			else if (line->dy < 0)
+			{
+				if (line->dy >= line->dx)
+					dy_n_dx_n(fdf);
+				else
+					dx_n_dy_n(fdf);
+			}
+		}
+		else
+			dy_0_dx_n(fdf);
+	}
+	else
+	{
+		if (line->dy > 0)
+			dy_p_dx_0(fdf);
+		else
+			dx_0_dy_n(fdf);
 	}
 }
 
@@ -150,6 +298,7 @@ int get_souris_click(int button, int x, int y, void *param)
 	t_mlx mlx = fdf->mlx;
 	t_line line = &fdf->line;
 
+	(void) button;
 	if (i == 0)
 	{
 		set_line_1(x, y, line);
@@ -168,7 +317,7 @@ int get_souris_click(int button, int x, int y, void *param)
 		mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
 		i = 0;
 	}
-	ft_printf("%d \n", button);
+	//	ft_printf("%d \n", button);
 
 	return (TRUE);
 }
