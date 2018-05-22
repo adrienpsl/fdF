@@ -94,25 +94,33 @@ void tracer_rec(t_rect rect, t_fdf fdf)
 	}
 }
 
+
+double deg(int d)
+{
+	return (d / 180.0 * M_PI);
+}
+
 void test(t_rect rect)
 {
-	static double d_rad = 0.0174533;
+	double d_rad = deg(30);
 	t_dot dot;
 
 	double deg = d_rad;
-//
-		for (int i = 0; i < 4; ++i)
-		{
-			dot = &rect->dot[i];
-			dot->x = round(dot->x * cos(deg) - dot->y * sin(deg));
-			dot->y = round(dot->x * sin(deg) + dot->y * cos(deg));
-			if (i == 1)
-				printf("%f %f \n", dot->x, dot->y);
-		}
+	//
+	for (int i = 0; i < 4; ++i)
+	{
+		dot = &rect->dot[i];
+		dot->x = (dot->x - 230) * cos(deg) - (dot->y - 230) * sin(deg);
+		dot->y = (dot->x - 230) * sin(deg) + (dot->y - 230) * cos(deg);
+		dot->y += 230;
+		dot->x += 230;
+		if (i == 1)
+			printf("%f %f \n", dot->x, dot->y);
+	}
 }
 
 //int test_souris(int button, int x, int y, void *param)
-//{
+//{faire
 //	static int i = 0;
 //	t_fdf fdf = param;
 //	t_mlx mlx = fdf->mlx;
@@ -145,11 +153,13 @@ int main()
 	mlx = new_mlx(1000, 1000, "lala");
 	fdf.mlx = mlx;
 
-	for (int i = 0; i < 30; ++i)
-	{
-		tracer_rec(&rec, &fdf);
-		test(&rec);
-	}
+	//	for (int i = 0; i < 30; ++i)
+	//	{
+	tracer_rec(&rec, &fdf);
+	test(&rec);
+	tracer_rec(&rec, &fdf);
+
+	//	}
 
 
 
