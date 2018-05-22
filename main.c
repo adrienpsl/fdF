@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "includes/fdf_header.h"
 
 int get_souris_click(int button, int x, int y, void *param)
@@ -59,9 +60,6 @@ void set_dot(int x, int y, void *right, void *bottom, t_dot dot)
 	dot->tab.right = right;
 }
 
-
-// set le
-
 void trace_rec_utils(t_dot dot, t_fdf fdf)
 {
 	t_line line;
@@ -76,6 +74,7 @@ void trace_rec_utils(t_dot dot, t_fdf fdf)
 		c_dot = dot->tab.right;
 		set_line_2(c_dot->x, c_dot->y, line);
 		trace_line(fdf);
+		set_line_1(dot->x, dot->y, line);
 	}
 	if (dot->tab.bottom)
 	{
@@ -89,10 +88,23 @@ void trace_rec_utils(t_dot dot, t_fdf fdf)
 
 void tracer_rec(t_rect rect, t_fdf fdf)
 {
-	for (int i = 0; i < 4; ++i)
+		for (int i = 0; i < 4; ++i)
 	{
 		trace_rec_utils(&rect->dot[i], fdf);
 	}
+}
+
+void test(t_dot dot)
+{
+	double f_x;
+    double f_y;
+	double deg = 0.017;
+	printf("%f \n", deg);
+
+	printf("%d %d\n", dot->x,dot->y);
+	f_x = dot->x * cos(deg) - dot->y * sin(deg);
+	f_y = dot->x * sin(deg) + dot->y * cos(deg);
+	printf("%f %f\n", f_x, f_y);
 }
 
 int main()
@@ -114,7 +126,10 @@ int main()
 	mlx = new_mlx(1000, 1000, "lala");
 	fdf.mlx = mlx;
 
+	test(d_2);
 	tracer_rec(&rec, &fdf);
+
+
 //	mlx_mouse_hook(mlx->window, get_souris_click, &fdf);
 
 	mlx_loop(mlx->mlx);
