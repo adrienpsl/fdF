@@ -44,8 +44,8 @@ typedef t_dot_tab_00 *t_dot_tab;
 
 typedef struct		s_dot_00
 {
-	int	x;
-	int y;
+	double	x;
+	double y;
 	t_dot_tab_00 tab;
 } 					t_dot_00;
 

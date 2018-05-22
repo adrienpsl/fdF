@@ -88,24 +88,43 @@ void trace_rec_utils(t_dot dot, t_fdf fdf)
 
 void tracer_rec(t_rect rect, t_fdf fdf)
 {
-		for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < 4; ++i)
 	{
 		trace_rec_utils(&rect->dot[i], fdf);
 	}
 }
 
-void test(t_dot dot)
+void test(t_rect rect)
 {
-	double f_x;
-    double f_y;
-	double deg = 0.017;
-	printf("%f \n", deg);
+	static double d_rad = 0.0174533;
+	t_dot dot;
 
-	printf("%d %d\n", dot->x,dot->y);
-	f_x = dot->x * cos(deg) - dot->y * sin(deg);
-	f_y = dot->x * sin(deg) + dot->y * cos(deg);
-	printf("%f %f\n", f_x, f_y);
+	double deg = d_rad;
+//
+		for (int i = 0; i < 4; ++i)
+		{
+			dot = &rect->dot[i];
+			dot->x = round(dot->x * cos(deg) - dot->y * sin(deg));
+			dot->y = round(dot->x * sin(deg) + dot->y * cos(deg));
+			if (i == 1)
+				printf("%f %f \n", dot->x, dot->y);
+		}
 }
+
+//int test_souris(int button, int x, int y, void *param)
+//{
+//	static int i = 0;
+//	t_fdf fdf = param;
+//	t_mlx mlx = fdf->mlx;
+//	t_line line = &fdf->line;
+//
+//	(void) button;
+//	test()
+//	//	ft_printf("%d \n", button);
+//
+//	return (TRUE);
+//}
+
 
 int main()
 {
@@ -118,19 +137,23 @@ int main()
 	t_dot d_3 = &rec.dot[2];
 	t_dot d_4 = &rec.dot[3];
 
-	set_dot(10, 10, d_2, d_3, d_1);
-	set_dot(60, 10, NULL, d_4, d_2);
-	set_dot(10, 60, d_4, NULL, d_3);
-	set_dot(60, 60, NULL, NULL, d_4);
+	set_dot(200, 200, d_2, d_3, d_1);
+	set_dot(260, 200, NULL, d_4, d_2);
+	set_dot(200, 260, d_4, NULL, d_3);
+	set_dot(260, 260, NULL, NULL, d_4);
 
 	mlx = new_mlx(1000, 1000, "lala");
 	fdf.mlx = mlx;
 
-	test(d_2);
-	tracer_rec(&rec, &fdf);
+	for (int i = 0; i < 30; ++i)
+	{
+		tracer_rec(&rec, &fdf);
+		test(&rec);
+	}
 
 
-//	mlx_mouse_hook(mlx->window, get_souris_click, &fdf);
+
+	//	mlx_mouse_hook(mlx->window, get_souris_click, &fdf);
 
 	mlx_loop(mlx->mlx);
 	return 0;
