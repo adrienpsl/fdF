@@ -10,55 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fdf_header.h"
+#include "../../includes/fdf_header.h"
 
-
-
-
-
-// get les coordoner de la souris
-
-int get_souris_click(int button, int x, int y, void *param)
+void dy_p_dx_0(t_fdf fdf)
 {
-	static int i = 0;
-	t_fdf fdf = param;
-	t_mlx mlx = fdf->mlx;
-	t_line line = &fdf->line;
+	t_line l;
 
-	(void) button;
-	if (i == 0)
+	l = &fdf->line;
+	while (l->y_1 != l->y_2)
 	{
-		set_line_1(x, y, line);
-		++i;
+		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
+		++l->y_1;
 	}
-
-	else if (i == 1)
-	{
-		set_line_2(x, y, line);
-		++i;
-	}
-
-	if (i == 2)
-	{
-		trace_line(fdf);
-		mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
-		i = 0;
-	}
-	//	ft_printf("%d \n", button);
-
-	return (TRUE);
 }
 
-int main()
+void dx_0_dy_n(t_fdf fdf)
 {
-	t_mlx mlx;
-	t_fdf_00 fdf;
+	t_line l;
 
-	mlx = new_mlx(1000, 1000, "lala");
-	fdf.mlx = mlx;
-
-	mlx_mouse_hook(mlx->window, get_souris_click, &fdf);
-
-	mlx_loop(mlx->mlx);
-	return 0;
+	l = &fdf->line;
+	while (l->y_1 != l->y_2)
+	{
+		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
+		--l->y_1;
+	}
 }

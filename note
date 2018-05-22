@@ -3,9 +3,19 @@ mlx retoun un void *
 
 todo :
 
-je fais les traits, ensuite au lieu de les mettre avec les pixel je fairais une map;
+
+
+
+
 
 1 faire la structure qui gere toutes les datas
 2 la set et fermer la fenetre avec echap
 
-3 tracer le premier trait
+
+je sais faire des trait dans tout les sens
+-> je veux faire un carre en 3d en donnant les info a fdf ?
+        faire une rotation en 2d pour un simple carre pour comprendre
+            tracer le carre
+            quels structure pour gere les angles ?
+                un point relier a chacunne de ses
+                je fais mon point et il a un tab sur les quatre autre possible point qu'il peut avoir.

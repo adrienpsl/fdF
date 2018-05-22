@@ -19,4 +19,22 @@ void set_line_1(int x, int y, t_line l);
 void set_line_2(int x, int y, t_line l);
 
 
-#endif //FDF_FDF_HEADER_H
+/*
+**    draw line
+*/
+void trace_line(t_fdf fdf);
+void dx_p_dy_p(t_fdf fdf);
+void dy_p_dx_p(t_fdf fdf);
+void dx_p_dy_n(t_fdf fdf);
+void dy_n_dx_p(t_fdf fdf);
+void dx_p_dy_0(t_fdf fdf);
+void dx_n_dy_p(t_fdf fdf);
+void dy_p_dx_n(t_fdf fdf);
+void dy_n_dx_n(t_fdf fdf);
+void dy_0_dx_n(t_fdf fdf);
+void dx_n_dy_n(t_fdf fdf);
+void dy_p_dx_0(t_fdf fdf);
+void dx_0_dy_n(t_fdf fdf);
+
+
+#endif

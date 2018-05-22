@@ -31,8 +31,26 @@ typedef struct s_fig_2_
 	int y_2;
 	long color;
 } t_fig_2_00;
-
 typedef t_fig_2_00 *t_fig_2;
+
+
+typedef struct		s_dot_tab_00
+{
+	struct s_dot_00 *right;
+	struct s_dot_00 *bottom;
+} 					t_dot_tab_00;
+typedef t_dot_tab_00 *t_dot_tab;
+
+
+typedef struct		s_dot_00
+{
+	int	x;
+	int y;
+	t_dot_tab_00 tab;
+} 					t_dot_00;
+
+typedef t_dot_00 *t_dot;
+
 
 
 typedef struct s_rec_link_00
