@@ -106,7 +106,7 @@ void test(t_rect rect)
 	t_dot dot;
 
 	double deg = d_rad;
-	//
+
 	for (int i = 0; i < 4; ++i)
 	{
 		dot = &rect->dot[i];
@@ -137,9 +137,11 @@ void test(t_rect rect)
 int main()
 {
 	t_mlx mlx;
-	t_fdf_00 fdf;
+	t_fdf fdf;
 	t_rect_00 rec;
 
+	fdf = new_fdf();
+	mlx = fdf->mlx;
 	t_dot d_1 = &rec.dot[0];
 	t_dot d_2 = &rec.dot[1];
 	t_dot d_3 = &rec.dot[2];
@@ -150,14 +152,13 @@ int main()
 	set_dot(200, 260, d_4, NULL, d_3);
 	set_dot(260, 260, NULL, NULL, d_4);
 
-	mlx = new_mlx(1000, 1000, "lala");
-	fdf.mlx = mlx;
+
 
 	//	for (int i = 0; i < 30; ++i)
 	//	{
-	tracer_rec(&rec, &fdf);
+	tracer_rec(&rec, fdf);
 	test(&rec);
-	tracer_rec(&rec, &fdf);
+	tracer_rec(&rec, fdf);
 
 	//	}
 

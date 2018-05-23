@@ -45,7 +45,8 @@ typedef t_dot_tab_00 *t_dot_tab;
 typedef struct		s_dot_00
 {
 	double	x;
-	double y;
+	double	y;
+	double	z;
 	t_dot_tab_00 tab;
 } 					t_dot_00;
 
@@ -76,17 +77,6 @@ typedef struct		s_mlx_00
 
 typedef t_mlx_00 *t_mlx;
 
-typedef struct		s_visualisateur_00
-{
-	t_fig_2_00 fig2;
-	t_dll rec_pile;
-	t_dll list_color;
-	t_dll_c pile_a;
-	t_dll_c pile_b;
-
-
-} 					t_visualisateur_00;
-
 /*
 **    lines
 */
@@ -100,17 +90,28 @@ typedef struct s_line_
 	int dy;
 	int e;
 } t_line_00;
-
 typedef t_line_00 *t_line;
 
 
 typedef struct		s_fdf_00
 {
 	t_mlx			mlx;
-	t_line_00			line;
+	t_dll			p_pixel;
+	t_line_00		line;
+	int				line_size;
 } 					t_fdf_00;
-
 typedef t_fdf_00 *t_fdf;
+
+typedef struct		s_fdf_get_00
+{
+	size_t	size_line;
+	int fd;
+	int ret;
+	char **split;
+	char *line;
+} 					t_fdf_get_00;
+typedef t_fdf_get_00 *t_fdf_get;
+
 
 
 

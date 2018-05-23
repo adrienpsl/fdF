@@ -7,6 +7,7 @@ todo :
 2 la set et fermer la fenetre avec echap
 
 
+
 je sais faire des trait dans tout les sens
 -> je veux faire un carre en 3d en donnant les info a fdf ?
         faire une rotation en 2d pour un simple carre pour comprendre
@@ -14,3 +15,11 @@ je sais faire des trait dans tout les sens
             quels structure pour gere les angles ?
                 un point relier a chacunne de ses
                 je fais mon point et il a un tab sur les quatre autre possible point qu'il peut avoir.
+
+
+-> c'est quoi la diff qui est appliquer ?
+
+faire le parsing
+-->     open
+        controller soit bien des nb
+        les mettres dans mes pixel

@@ -9,6 +9,9 @@
 
 
 t_mlx	new_mlx(int x, int y, char *name);
+t_fdf	new_fdf();
+t_fdf destroy_fdf(t_fdf fdf);
+
 void	fill_pixel(t_mlx mlx, long x, long y, int color);
 
 
