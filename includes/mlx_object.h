@@ -47,6 +47,7 @@ typedef struct		s_dot_00
 	double	x;
 	double	y;
 	double	z;
+	int		color;
 	t_dot_tab_00 tab;
 } 					t_dot_00;
 
