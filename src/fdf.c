@@ -29,6 +29,8 @@ t_fdf new_fdf()
 	fdf = ft_malloc_protect(sizeof(t_fdf_00));
 	ft_memset(fdf, 0, sizeof(fdf));
 
+	// je ne protege pas mon init
+
 	fdf->mlx = new_mlx(1000, 1000, "lala");
 	fdf->p_pixel = new_dll();
 	return (fdf);

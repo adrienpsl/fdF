@@ -51,7 +51,6 @@ typedef struct s_rect_00
 
 typedef t_rect_00 *t_rect;
 
-// je set le premier rectangle en partant de la gauche
 void set_dot(int x, int y, void *right, void *bottom, t_dot dot)
 {
 	dot->x = x;
@@ -94,28 +93,33 @@ void tracer_rec(t_rect rect, t_fdf fdf)
 	}
 }
 
-
-double deg(int d)
+double degd(int d)
 {
 	return (d / 180.0 * M_PI);
 }
 
 void test(t_rect rect)
 {
-	double d_rad = deg(30);
 	t_dot dot;
 
-	double deg = d_rad;
+	//	double d_rad = 40;
+		double deg = degd(50);
+//	double deg = 0.0174533 * 45;
 
+	int tmp_x;
+	// (le plus proche de o h gauche  + CELUI LE PLU lion) / 2
 	for (int i = 0; i < 4; ++i)
 	{
 		dot = &rect->dot[i];
-		dot->x = (dot->x - 230) * cos(deg) - (dot->y - 230) * sin(deg);
-		dot->y = (dot->x - 230) * sin(deg) + (dot->y - 230) * cos(deg);
+		dot->x -= 230;
+		dot->y -= 230;
+		printf("%f %f \n", dot->x, dot->y);
+		tmp_x  = dot->x * cos(deg) - dot->y * sin(deg);
+		dot->y = dot->x * sin(deg) + dot->y * cos(deg);
+		printf("%f %f \n", dot->x, dot->y);
+		dot->x = tmp_x + 230;
 		dot->y += 230;
-		dot->x += 230;
-		if (i == 1)
-			printf("%f %f \n", dot->x, dot->y);
+		printf("%f %f \n\n", dot->x, dot->y);
 	}
 }
 
@@ -147,20 +151,17 @@ int main()
 	t_dot d_3 = &rec.dot[2];
 	t_dot d_4 = &rec.dot[3];
 
-	set_dot(200, 200, d_2, d_3, d_1);
-	set_dot(260, 200, NULL, d_4, d_2);
-	set_dot(200, 260, d_4, NULL, d_3);
-	set_dot(260, 260, NULL, NULL, d_4);
+	set_dot(0, 0, d_2, d_3, d_1);
+	set_dot(60, 0, NULL, d_4, d_2);
+	set_dot(0, 60, d_4, NULL, d_3);
+	set_dot(60, 60, NULL, NULL, d_4);
 
-
-
-	//	for (int i = 0; i < 30; ++i)
-	//	{
 	tracer_rec(&rec, fdf);
+	for (int i = 0; i < 45; ++i)
+	{
+	}
 	test(&rec);
 	tracer_rec(&rec, fdf);
-
-	//	}
 
 
 
