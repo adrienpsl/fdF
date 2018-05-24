@@ -144,14 +144,16 @@ void test(t_rect rect)
 //}
 
 
-int main()
+int main(int ac, char **av)
 {
-	t_mlx mlx;
+	(void)ac;
+//	t_mlx mlx;
 	t_fdf fdf;
+
 //	t_rect_00 rec;
 
 	fdf = new_fdf();
-	mlx = fdf->mlx;
+//	mlx = fdf->mlx;
 //	t_pixel d_1 = &rec.pixel[0];
 //	t_pixel d_2 = &rec.pixel[1];
 //	t_pixel d_3 = &rec.pixel[2];
@@ -164,9 +166,9 @@ int main()
 //	set_pixel(HEIGHT, WIDTH, z, NULL, NULL, d_4);
 //
 //	tracer_rec(&rec, fdf);
-	for (int i = 0; i < 45; ++i)
-	{
-	}
+//	for (int i = 0; i < 45; ++i)
+//	{
+//	}
 //	test(&rec);
 //	tracer_rec(&rec, fdf);
 
@@ -174,6 +176,7 @@ int main()
 
 	//	mlx_mouse_hook(mlx->window, get_souris_click, &fdf);
 
-	mlx_loop(mlx->mlx);
+//	mlx_loop(mlx->mlx);
+	populate_pixel(av[1], fdf);
 	return 0;
 }

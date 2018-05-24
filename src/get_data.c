@@ -20,7 +20,7 @@ void	add_pixel_link(t_fdf_get get)
 
 	z_str = get->split[get->x];
 	if (ft_is_all_number(z_str) == FALSE)
-		ft_error("z is not number");
+		ft_error("z is not number\n");
 	pixel.x = get->x;
 	pixel.y = get->y;
 	pixel.z = ft_atoi(z_str);
@@ -33,7 +33,7 @@ void	add_pixel_link(t_fdf_get get)
 void split_and_get_pxl(t_fdf_get get)
 {
 	if (ft_strlen(get->line) != get->size_line)
-		ft_error("lines are changing length");
+		ft_error("lines are changing length\n");
 	get->split = ft_strsplit(get->line, ' ');
 	while (get->split[get->x])
 	{
@@ -46,7 +46,7 @@ void split_and_get_pxl(t_fdf_get get)
 
 void init_populatie_pixel(char *name, t_fdf_get get, t_fdf fdf)
 {
-	ft_memset(&get, 0, sizeof(get));
+	ft_memset(get, 0, sizeof(get));
 	get->fd = open_file(name);
 	get_next_line(get->fd, &get->line);
 	get->size_line = ft_strlen(get->line);
@@ -63,6 +63,8 @@ void populate_pixel(char *name, t_fdf fdf)
 	init_populatie_pixel(name, &get, fdf);
 	while (get_next_line(get.fd, &get.line) > 0)
 	{
-	    ;
+		split_and_get_pxl(&get);
+		free_str(&get.line);
 	}
+	free_str(&get.line);
 }
