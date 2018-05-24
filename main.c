@@ -143,6 +143,14 @@ void test(t_rect rect)
 //	return (TRUE);
 //}
 
+// fonction trace :
+//	prend fdf, t /
+
+//void fdf_trace(t_fdf fdf)
+//{
+//
+//}
+
 
 int main(int ac, char **av)
 {
@@ -178,5 +186,8 @@ int main(int ac, char **av)
 
 //	mlx_loop(mlx->mlx);
 	populate_pixel(av[1], fdf);
+
+
+	destroy_fdf(fdf);
 	return 0;
 }

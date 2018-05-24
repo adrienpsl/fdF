@@ -1,30 +1,8 @@
-
-
-
-
-
-
- si (dx ← x2 - x1) ≠ 0 alors
-    si dx > 0 alors
-
-  sinon  // dx = 0
-    si (dy ← y2 - y1) ≠ 0 alors
-      si dy > 0 alors
-
-        // vecteur vertical croissant
-        répéter
-          tracePixel(x1, y1) ;
-        jusqu’à ce que (y1 ← y1 + 1) = y2 ;
-
-      sinon  // dy < 0 (et dx = 0)
-
-        // vecteur vertical décroissant
-        répéter
-          tracePixel(x1, y1) ;
-        jusqu’à ce que (y1 ← y1 - 1) = y2 ;
-
-      fin si ;
-    fin si ;
-  fin si ;
-  // le pixel final (x2, y2) n’est pas tracé.
-fin procédure ;
+1-->
+    check data :
+    vide, lettre dans nb
+    pas le meme nombre de fill
+    dois gere les bullshit sur son entree
+2-->
+    tracer sans couleur et sans matrice
+    de gauche a droite

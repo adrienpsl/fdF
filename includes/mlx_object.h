@@ -97,7 +97,6 @@ typedef t_fdf_00 *t_fdf;
 
 typedef struct		s_fdf_get_00
 {
-	size_t	size_line;
 	char **split;
 	char *line;
 	t_dll pixel_pile;

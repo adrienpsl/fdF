@@ -12,7 +12,7 @@
 
 #include "../includes/fdf_header.h"
 
-void	add_pixel_link(t_fdf_get get)
+void add_pixel_link(t_fdf_get get)
 {
 	static t_pixel_00 pixel;
 	static char *z_str;
@@ -31,14 +31,23 @@ void	add_pixel_link(t_fdf_get get)
 
 void split_and_get_pxl(t_fdf_get get)
 {
-	if (ft_strlen(get->line) != get->size_line)
-		ft_error("lines are changing length\n");
+	static int first = -1;
+	static int count_pixel;
+
 	get->split = ft_strsplit(get->line, ' ');
+	if (first == -1)
+	{
+		count_pixel = count_split(get->split);
+		++first;
+	}
+	else if (count_pixel != count_split(get->split))
+		ft_error("lines are changing length\n");
 	while (get->split[get->x])
 	{
 		add_pixel_link(get);
 		++get->x;
 	}
+	ft_free_split(&get->split);
 	get->x = 0;
 	++get->y;
 }
@@ -47,20 +56,16 @@ void init_populatie_pixel(char *name, t_fdf_get get, t_fdf fdf)
 {
 	ft_memset(get, 0, sizeof(t_fdf_get_00));
 	get->fd = open_file(name);
-	get_next_line(get->fd, &get->line);
-	get->size_line = ft_strlen(get->line);
-	if(get->line)
+	if (get->line)
 		free(get->line);
 	get->pixel_pile = fdf->pixel_pile;
 }
-
 
 void populate_pixel(char *name, t_fdf fdf)
 {
 	t_fdf_get_00 get;
 
 	init_populatie_pixel(name, &get, fdf);
-	split_and_get_pxl(&get);
 	while (get_next_line(get.fd, &get.line) > 0)
 	{
 		split_and_get_pxl(&get);
