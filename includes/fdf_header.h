@@ -23,6 +23,11 @@ void set_line_2(int x, int y, t_line l);
 
 
 /*
+**    getter data
+*/
+void populate_pixel(char *name, t_fdf fdf);
+
+/*
 **    draw line
 */
 void trace_line(t_fdf fdf);

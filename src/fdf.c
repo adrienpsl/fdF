@@ -18,7 +18,7 @@ t_fdf destroy_fdf(t_fdf fdf)
 	// destroy mlx
 
 
-	destroy_dll(&fdf->p_pixel);
+	destroy_dll(&fdf->pixel_pile);
 	return (fdf);
 }
 
@@ -32,7 +32,7 @@ t_fdf new_fdf()
 	// je ne protege pas mon init
 
 	fdf->mlx = new_mlx(1000, 1000, "lala");
-	fdf->p_pixel = new_dll();
+	fdf->pixel_pile = new_dll();
 	return (fdf);
 }
 

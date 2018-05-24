@@ -1,6 +1,13 @@
 mlx retoun un void *
 
 
+parsing :
+-->     open
+        controller soit bien des nb
+        check meme size
+        les mettres dans mes pixel
+
+
 todo :
 
 1 faire la structure qui gere toutes les datas
@@ -19,7 +26,3 @@ je sais faire des trait dans tout les sens
 
 -> c'est quoi la diff qui est appliquer ?
 
-faire le parsing
--->     open
-        controller soit bien des nb
-        les mettres dans mes pixel

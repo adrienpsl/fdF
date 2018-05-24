@@ -3,7 +3,9 @@
 
 # include "../sources/ft_library_header.h"
 
-
+#define POSITION_FIGURE 200
+#define HEIGHT	(POSITION_FIGURE + 60)
+#define WIDTH 	(POSITION_FIGURE + 60)
 typedef struct s_coord_
 {
 	int x_1;
@@ -33,25 +35,15 @@ typedef struct s_fig_2_
 } t_fig_2_00;
 typedef t_fig_2_00 *t_fig_2;
 
-
-typedef struct		s_dot_tab_00
-{
-	struct s_dot_00 *right;
-	struct s_dot_00 *bottom;
-} 					t_dot_tab_00;
-typedef t_dot_tab_00 *t_dot_tab;
-
-
-typedef struct		s_dot_00
+typedef struct		s_pixel_00
 {
 	double	x;
 	double	y;
 	double	z;
 	int		color;
-	t_dot_tab_00 tab;
-} 					t_dot_00;
+} 					t_pixel_00;
 
-typedef t_dot_00 *t_dot;
+typedef t_pixel_00 *t_pixel;
 
 
 
@@ -97,7 +89,7 @@ typedef t_line_00 *t_line;
 typedef struct		s_fdf_00
 {
 	t_mlx			mlx;
-	t_dll			p_pixel;
+	t_dll			pixel_pile;
 	t_line_00		line;
 	int				line_size;
 } 					t_fdf_00;
@@ -106,10 +98,12 @@ typedef t_fdf_00 *t_fdf;
 typedef struct		s_fdf_get_00
 {
 	size_t	size_line;
-	int fd;
-	int ret;
 	char **split;
 	char *line;
+	t_dll pixel_pile;
+	int fd;
+	int x;
+	int y;
 } 					t_fdf_get_00;
 typedef t_fdf_get_00 *t_fdf_get;
 
