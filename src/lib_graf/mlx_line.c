@@ -12,26 +12,16 @@
 
 #include "../../includes/fdf_header.h"
 
-void dy_p_dx_0(t_fdf fdf)
+void set_line_1(int x, int y, t_line l)
 {
-	t_line l;
+	l->x_1 = x;
+	l->y_1 = y;
+};
 
-	l = &fdf->line;
-	while (l->y_1 != l->y_2)
-	{
-		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
-		++l->y_1;
-	}
-}
-
-void dx_0_dy_n(t_fdf fdf)
+void set_line_2(int x, int y, t_line l)
 {
-	t_line l;
-
-	l = &fdf->line;
-	while (l->y_1 != l->y_2)
-	{
-		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
-		--l->y_1;
-	}
-}
+	l->x_2 = x;
+	l->y_2 = y;
+	l->dx = l->x_2 - l->x_1;
+	l->dy = l->y_2 - l->y_1;
+};

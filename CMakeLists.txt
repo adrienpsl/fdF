@@ -58,7 +58,7 @@ set(
         ${sources08}
 #
 #        ${sources000}
-        src/draw_line/brain_draw.c src/draw_line/dx_sup_0.c)
+        src/lib_graf/draw_line/brain_draw.c src/lib_graf/draw_line/dx_sup_0.c)
 
 add_executable(fdf
 

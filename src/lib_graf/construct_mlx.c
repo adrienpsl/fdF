@@ -10,18 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf_header.h"
+#include "../../includes/fdf_header.h"
 
-void set_line_1(int x, int y, t_line l)
+t_mlx new_mlx(int x, int y, char *name)
 {
-	l->x_1 = x;
-	l->y_1 = y;
-};
+	int a;
+	int b;
+	int c;
+	t_mlx mlx;
 
-void set_line_2(int x, int y, t_line l)
-{
-	l->x_2 = x;
-	l->y_2 = y;
-	l->dx = l->x_2 - l->x_1;
-	l->dy = l->y_2 - l->y_1;
-};
+	mlx = ft_malloc_protect(sizeof(t_mlx_00));
+	mlx->mlx = mlx_init();
+	mlx->x = x - 25;
+	mlx->y = y - 25;
+	mlx->window = mlx_new_window(mlx->mlx, x, y, name);
+	mlx->img = mlx_new_image(mlx->mlx, x - 25, y - 25);
+	mlx->str_img = mlx_get_data_addr(mlx->img, &a, &b, &c);
+	return (mlx);
+}
