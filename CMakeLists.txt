@@ -79,7 +79,7 @@ set(
         ${sources06}
         #        ${sources07}
         #        ${sources08}
-)
+        project/src/trace_tab.c)
 
 #*------------------------------------*\
 #    --  ADD TO PROGRAMME  --

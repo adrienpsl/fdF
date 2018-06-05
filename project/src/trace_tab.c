@@ -12,26 +12,13 @@
 
 #include "../includes/fdf_header.h"
 
-t_fdf destroy_fdf(t_fdf fdf)
+
+/*
+ * boucle une premier fois sur le tab et s'incrente a chaque fois
+ *  utiliser la precedente structure? rester avec des static pour la phase de dev
+ * */
+int trace_tab(t_fdf fdf)
 {
-	if (fdf->pixel_pile)
-	    destroy_dll(&fdf->pixel_pile);
-	free(fdf);
-	return (fdf);
+	stao
+	return (1);
 }
-
-
-t_fdf new_fdf()
-{
-	t_fdf fdf;
-
-	fdf = ft_malloc_protect(sizeof(t_fdf_00));
-	ft_memset(fdf, 0, sizeof(fdf));
-
-	// je ne protege pas mon init
-
-//	fdf->mlx = new_mlx(1000, 1000, "lala");
-	fdf->pixel_pile = new_dll();
-	return (fdf);
-}
-
