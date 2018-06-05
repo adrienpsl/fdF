@@ -5,6 +5,10 @@
 # include "mlx.h"
 # include "mlx_object.h"
 
+# define X 0
+# define Y 1
+# define Z 2
+
 t_mlx new_mlx(int x, int y, char *name);
 t_fdf new_fdf();
 t_fdf destroy_fdf(t_fdf fdf);

@@ -41,15 +41,14 @@ void add_pixel_link(t_fdf_get get)
 void split_and_get_pxl(t_fdf_get get)
 {
 	static int first = -1;
-	static int count_pixel;
 
 	get->split = ft_strsplit(get->line, ' ');
 	if (first == -1)
 	{
-		count_pixel = count_split(get->split);
+		get->count_pxl = count_split(get->split);
 		++first;
 	}
-	else if (count_pixel != count_split(get->split))
+	else if (get->count_pxl != count_split(get->split))
 		ft_error("lines are changing length\n");
 	while (get->split[get->x])
 	{
@@ -85,7 +84,7 @@ void populate_pixel(char *name, t_fdf fdf)
 		split_and_get_pxl(&get);
 		free_str(&get.line);
 	}
-	fdf->nb_col = get.x;
+	fdf->nb_col = get.count_pxl;
 	fdf->nb_line = get.y;
 	free_str(&get.line);
 }

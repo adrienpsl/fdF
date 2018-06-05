@@ -162,12 +162,13 @@ void print_pix(t_dll_l link)
 	pixel = link->content;
 	printf("%.0f ", pixel->x);
 	printf("%.0f ", pixel->y);
-	printf("%.0f \n", pixel->z);
+	printf("%.0f // ", pixel->z);
 	++x;
 	if (x == 4)
 	{
 		y++;
 		x = 0;
+		ft_printf("\n");
 	}
 }
 
@@ -206,7 +207,7 @@ int main(int ac, char **av)
 //	mlx_loop(mlx->mlx);
 	populate_pixel(av[1], fdf);
 
-	dll_func(fdf->pixel_pile, &print_pix);
+//	dll_func(fdf->pixel_pile, &print_pix);
 
 
 	destroy_fdf(fdf);

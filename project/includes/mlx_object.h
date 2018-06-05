@@ -93,13 +93,13 @@ typedef struct		s_fdf_00
 	int				nb_line;
 	int 			nb_col;
 	t_line_00		line;
-	int				line_size;
 } 					t_fdf_00;
 typedef t_fdf_00 *t_fdf;
 
 typedef struct		s_fdf_get_00
 {
 	char **split;
+	int  count_pxl;
 	char *line;
 	t_dll pixel_pile;
 	int fd;
