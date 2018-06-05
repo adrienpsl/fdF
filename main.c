@@ -152,6 +152,17 @@ void test(t_rect rect)
 //}
 
 
+// print les pixel :
+void print_pix(t_dll_l link)
+{
+	t_pixel pixel;
+
+	pixel = link->content;
+	ft_printf("%d ", pixel->x);
+	ft_printf("%d ", pixel->y);
+	ft_printf("%d \n", pixel->z);
+}
+
 int main(int ac, char **av)
 {
 	(void)ac;
@@ -186,6 +197,7 @@ int main(int ac, char **av)
 
 //	mlx_loop(mlx->mlx);
 	populate_pixel(av[1], fdf);
+	dll_func(fdf, &print_pixel);
 
 
 	destroy_fdf(fdf);
