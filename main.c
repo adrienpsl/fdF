@@ -156,11 +156,19 @@ void test(t_rect rect)
 void print_pix(t_dll_l link)
 {
 	t_pixel pixel;
+	static int x = 0;
+	static int y = 0;
 
 	pixel = link->content;
-	printf("%f ", pixel->x);
-	printf("%f ", pixel->y);
-	printf("%f \n", pixel->z);
+	printf("%.0f ", pixel->x);
+	printf("%.0f ", pixel->y);
+	printf("%.0f \n", pixel->z);
+	++x;
+	if (x == 4)
+	{
+		y++;
+		x = 0;
+	}
 }
 
 int main(int ac, char **av)
