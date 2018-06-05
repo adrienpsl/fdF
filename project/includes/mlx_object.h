@@ -90,6 +90,8 @@ typedef struct		s_fdf_00
 {
 	t_mlx			mlx;
 	t_dll			pixel_pile;
+	int				nb_line;
+	int 			nb_col;
 	t_line_00		line;
 	int				line_size;
 } 					t_fdf_00;

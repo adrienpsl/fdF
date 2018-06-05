@@ -12,6 +12,11 @@
 
 #include "../includes/fdf_header.h"
 
+/*
+**    add on tab the struc pxl with all coord,
+**    check if z is a nb
+*/
+
 void add_pixel_link(t_fdf_get get)
 {
 	static t_pixel_00 pixel;
@@ -28,6 +33,10 @@ void add_pixel_link(t_fdf_get get)
 	pixel_link = new_dll_l(&pixel, sizeof(t_pixel_00));
 	dll_add(pixel_link, get->pixel_pile);
 }
+
+/*
+**    fill the tab with all nb, and check the size of all line is the same
+*/
 
 void split_and_get_pxl(t_fdf_get get)
 {
@@ -61,6 +70,11 @@ void init_populatie_pixel(char *name, t_fdf_get get, t_fdf fdf)
 	get->pixel_pile = fdf->pixel_pile;
 }
 
+/*
+**   with gnl fill in fdf a dll with all pixel x,y,z
+**   the fonction check the enty and the data
+*/
+
 void populate_pixel(char *name, t_fdf fdf)
 {
 	t_fdf_get_00 get;
@@ -71,5 +85,7 @@ void populate_pixel(char *name, t_fdf fdf)
 		split_and_get_pxl(&get);
 		free_str(&get.line);
 	}
+	fdf->nb_col = get.x;
+	fdf->nb_line = get.y;
 	free_str(&get.line);
 }
