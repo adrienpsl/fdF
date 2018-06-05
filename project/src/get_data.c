@@ -12,6 +12,43 @@
 
 #include "../includes/fdf_header.h"
 
+void link_col(t_dll_l *ptr_link, int lim)
+{
+	static int a = 0;
+
+	static t_pixel pixel;
+
+	while (a < lim)
+	{
+	    pixel = link->content;
+		pixel->right = link->next->content;
+		link = link->next;
+		++a;
+	}
+	a = 0;
+}
+
+// pour linker les lignes :
+// un ptr en haut, un ptr en bas, je les avance en meme temps
+
+/*
+**    link ptr pixel
+*/
+void     link_pxl(t_fdf fdf)
+{
+    t_dll_l pixel;
+	static int line = 0;
+
+	pixel = fdf->pixel_pile->top;
+	link_col(pixel, fdf->nb_col);
+	++line;
+	while (line < fdf->nb_line)
+	{
+	    ;
+	}
+}
+
+
 /*
 **    add on tab the struc pxl with all coord,
 **    check if z is a nb
@@ -23,6 +60,7 @@ void add_pixel_link(t_fdf_get get)
 	static char *z_str;
 	t_dll_l pixel_link;
 
+	ft_memset(&pixel, 0, sizeof(t_pixel_00));
 	z_str = get->split[get->x];
 	if (ft_is_all_number(z_str) == FALSE)
 		ft_error("z is not number\n");

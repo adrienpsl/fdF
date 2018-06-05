@@ -40,6 +40,8 @@ typedef struct		s_pixel_00
 	double	x;
 	double	y;
 	double	z;
+	void	*right;
+	void	*bottom;
 	int		color;
 } 					t_pixel_00;
 
