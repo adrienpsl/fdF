@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <math.h>
-#include "includes/fdf_header.h"
+#include "project/includes/fdf_header.h"
 
 int get_souris_click(int button, int x, int y, void *param)
 {

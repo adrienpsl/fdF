@@ -1,7 +1,7 @@
 #ifndef FDF_STRUCT_H
 #define FDF_STRUCT_H
 
-# include "../sources/ft_library_header.h"
+# include "../libft/ft_library_header.h"
 
 #define POSITION_FIGURE 200
 #define HEIGHT	(POSITION_FIGURE + 60)
