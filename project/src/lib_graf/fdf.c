@@ -15,7 +15,7 @@
 t_fdf destroy_fdf(t_fdf fdf)
 {
 	if (fdf->pixel_tab)
-	    destroy_dll(&fdf->pixel_pile);
+	    free(fdf->pixel_tab);
 	free(fdf);
 	return (fdf);
 }
@@ -28,8 +28,7 @@ t_fdf new_fdf()
 	fdf = ft_malloc_protect(sizeof(t_fdf_00));
 	ft_memset(fdf, 0, sizeof(fdf));
 
-	fdf->mlx = new_mlx(1000, 1000, "lala");
-	fdf->pixel_pile = new_dll();
+//	fdf->mlx = new_mlx(1000, 1000, "lala");
 	return (fdf);
 }
 
