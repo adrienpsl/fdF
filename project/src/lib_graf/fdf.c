@@ -14,7 +14,7 @@
 
 t_fdf destroy_fdf(t_fdf fdf)
 {
-	if (fdf->pixel_pile)
+	if (fdf->pixel_tab)
 	    destroy_dll(&fdf->pixel_pile);
 	free(fdf);
 	return (fdf);

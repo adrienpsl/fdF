@@ -12,7 +12,6 @@
 
 #include "../includes/fdf_header.h"
 
-
 /*
 **    add on tab the struc pxl with all coord,
 **    check if z is a nb
@@ -42,15 +41,8 @@ void add_pixel_link(t_fdf_get get)
 
 void split_and_get_pxl(t_fdf_get get)
 {
-	static int first = -1;
-
 	get->split = ft_strsplit(get->line, ' ');
-	if (first == -1)
-	{
-		get->count_pxl = count_split(get->split);
-		++first;
-	}
-	else if (get->count_pxl != count_split(get->split))
+	if (get->count_pxl != count_split(get->split))
 		ft_error("lines are changing length\n");
 	while (get->split[get->x])
 	{
@@ -62,12 +54,23 @@ void split_and_get_pxl(t_fdf_get get)
 	++get->y;
 }
 
-void init_populatie_pixel(char *name, t_fdf_get get, t_fdf fdf)
+void counter_for_malloc(t_fdf_get get, char *name_file)
+{
+	static int ret;
+
+	get->fd = open_file(name_file);
+	ret = get_next_line(get->fd, get->line);
+	if (ret == -1)
+		errno_exit();
+	get->split = ft_strsplit(get->line, ' ');
+	get->count_pxl = count_split(get->split);
+}
+
+void init_populatie_pixel(char *name_file, t_fdf_get get, t_fdf fdf)
 {
 	ft_memset(get, 0, sizeof(t_fdf_get_00));
-	get->fd = open_file(name);
-	if (get->line)
-		free(get->line);
+	counter_for_malloc(get, name_file);
+	get->fd = open_file(name_file);
 	get->pixel_pile = fdf->pixel_pile;
 }
 
@@ -79,14 +82,21 @@ void init_populatie_pixel(char *name, t_fdf_get get, t_fdf fdf)
 void populate_pixel(char *name, t_fdf fdf)
 {
 	t_fdf_get_00 get;
+	static int ret = 0;
 
+	// faire une boucle sur le bon nb fichier
 	init_populatie_pixel(name, &get, fdf);
-	while (get_next_line(get.fd, &get.line) > 0)
+	while ((ret = get_next_line(get.fd, &get.line)) > 0)
 	{
 		split_and_get_pxl(&get);
 		free_str(&get.line);
 	}
+	if (ret == -1)
+		errno_exit();
+	if (get.line)
+		free(get.line);
 	fdf->nb_col = get.count_pxl;
 	fdf->nb_line = get.y;
 	free_str(&get.line);
+	close(get.fd);
 }

@@ -91,7 +91,7 @@ typedef t_line_00 *t_line;
 typedef struct		s_fdf_00
 {
 	t_mlx			mlx;
-	t_dll			pixel_pile;
+	t_pixel			*pixel;
 	int				nb_line;
 	int 			nb_col;
 	t_line_00		line;
