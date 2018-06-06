@@ -41,14 +41,15 @@ void add_pixel_link(t_fdf_get get)
 
 void split_and_get_pxl(t_fdf_get get)
 {
-	get->split = ft_strsplit(get->line, ' ');
-	if (get->nb_col != count_split(get->split))
+	get->split = new_str_split(get->line, ' ');
+
+	if (get->nb_col != get->split->all)
 		ft_error("lines are changing length\n");
-	while (get->split[get->x])
-	{
-		add_pixel_link(get);
-		++get->x;
-	}
+//	while (get->split[get->x])
+//	{
+//		add_pixel_link(get);
+//		++get->x;
+//	}
 	ft_free_split(&get->split);
 	get->x = 0;
 	++get->y;
@@ -71,6 +72,9 @@ void init_and_nb_malloc(char *name_file, t_fdf_get get)
 		get->nb_line++;
 	free_str(&get->line);
 
+	// faire le tab pour send les data
+	// set le dernier a 0 et garder sa size
+	get.
 	close(get->fd);
 	get->fd = open_file(name_file);
 }
@@ -86,16 +90,12 @@ void populate_pixel(char *name, t_fdf fdf)
 	static int ret = 0;
 
 	init_and_nb_malloc(name, &get);
-	while ((ret = get_next_line(get.fd, &get.line)) > 0)
-	{
+	while (ask_gnl(get.fd, &get.line))
 		split_and_get_pxl(&get);
-		free_str(&get.line);
-	}
-	if (ret == -1)
-		errno_exit();
 	free_str(&get.line);
+
 	fdf->nb_col = get.nb_col;
-	fdf->nb_line = get.y;
+	fdf->nb_line = get.nb_line;
 	free_str(&get.line);
 	close(get.fd);
 }

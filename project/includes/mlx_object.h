@@ -100,11 +100,12 @@ typedef t_fdf_00 *t_fdf;
 
 typedef struct		s_fdf_get_00
 {
-	char **split;
+	t_str_split split;
 	int  nb_col;
-	int nb_line;
+	int		nb_line;
 	char *line;
-	t_dll pixel_pile;
+	t_pixel	*pixel_tab;
+	int pos_tab;
 	int fd;
 	int x;
 	int y;
