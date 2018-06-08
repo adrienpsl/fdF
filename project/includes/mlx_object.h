@@ -92,7 +92,7 @@ typedef struct s_fdf_00
 	t_pixel pixel_tab;
 	int nb_line;
 	int nb_col;
-	int all_pxl;
+	long all_pxl;
 	t_line_00 line;
 } t_fdf_00;
 
@@ -105,12 +105,23 @@ typedef struct s_fdf_get_00
 	int nb_line;
 	char *line;
 	t_pixel pixel_tab;
-	int pos_tab;
+	long pos_tab;
 	int fd;
 	int x;
 	int y;
 } t_fdf_get_00;
 
 typedef t_fdf_get_00 *t_fdf_get;
+
+typedef struct		s_trace_00
+{
+	t_line_00 draw_l;
+	int col;
+	int line;
+	long where;
+} 					t_trace_00;
+
+typedef t_trace_00 *t_trace;
+
 
 #endif //FDF_STRUCT_H

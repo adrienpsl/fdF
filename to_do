@@ -1,10 +1,3 @@
-tout mettre dans le tab :
-    1 je check le file
-    2 je dl le tab dans la ram
-    3 su
-
-
-
 
 1-->
     check data :
@@ -24,6 +17,17 @@ faire un premier print de mon rectagle avec une echelle de 50;
 2-->
     tracer sans couleur et sans matrice
     de gauche a droite
+
+
+function qui trace les ligne ?
+    elle prend les data et les multiplie (par le pas * leurs position)
+
+
+
+
+
+
+
 
 3 -->
      je set les error avec p erno
