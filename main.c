@@ -116,11 +116,9 @@ void test(t_rect rect)
 		pixel->y -= middle_y;
 		pixel->z -= middle_y;
 
-
 		printf("%f %f \n", pixel->x, pixel->y);
 		tmp_x = pixel->x * cos(deg) - pixel->y * sin(deg);
 		pixel->y = pixel->x * sin(deg) + pixel->y * cos(deg);
-
 
 		printf("%f %f \n", pixel->x, pixel->y);
 		pixel->x = tmp_x + middle_x;
@@ -153,61 +151,68 @@ void test(t_rect rect)
 
 
 // print les pixel :
-void print_pix(t_dll_l link)
+void print_pix(t_fdf fdf)
 {
 	t_pixel pixel;
+	int i = 0;
+	int all = fdf->nb_line * fdf->nb_col;
 	static int x = 0;
 	static int y = 0;
 
-	pixel = link->content;
-	printf("%.0f ", pixel->x);
-	printf("%.0f ", pixel->y);
-	printf("%.0f // ", pixel->z);
-	++x;
-	if (x == 4)
+	while (i < all)
 	{
-		y++;
-		x = 0;
-		ft_printf("\n");
+		pixel = fdf->pixel_tab + i;
+		printf("%.0f ", pixel->x);
+		printf("%.0f ", pixel->y);
+		printf("%.0f // ", pixel->z);
+		++x;
+		if (x == 4)
+		{
+			y++;
+			x = 0;
+			ft_printf("\n");
+		}
+		i++;
 	}
 }
 
 int main(int ac, char **av)
 {
-	(void)ac;
-//	t_mlx mlx;
+	(void) ac;
+	//	t_mlx mlx;
 	t_fdf fdf;
 
-//	t_rect_00 rec;
+	//	t_rect_00 rec;
 
 	fdf = new_fdf();
-//	mlx = fdf->mlx;
-//	t_pixel d_1 = &rec.pixel[0];
-//	t_pixel d_2 = &rec.pixel[1];
-//	t_pixel d_3 = &rec.pixel[2];
-//	t_pixel d_4 = &rec.pixel[3];
+	//	mlx = fdf->mlx;
+	//	t_pixel d_1 = &rec.pixel[0];
+	//	t_pixel d_2 = &rec.pixel[1];
+	//	t_pixel d_3 = &rec.pixel[2];
+	//	t_pixel d_4 = &rec.pixel[3];
 
 
-//	set_pixel(POSITION_FIGURE, POSITION_FIGURE, z, d_1);
-//	set_pixel(WIDTH, POSITION_FIGURE, z, NULL, d_4, d_2);
-//	set_pixel(POSITION_FIGURE, HEIGHT, z, d_4, NULL, d_3);
-//	set_pixel(HEIGHT, WIDTH, z, NULL, NULL, d_4);
-//
-//	tracer_rec(&rec, fdf);
-//	for (int i = 0; i < 45; ++i)
-//	{
-//	}
-//	test(&rec);
-//	tracer_rec(&rec, fdf);
+	//	set_pixel(POSITION_FIGURE, POSITION_FIGURE, z, d_1);
+	//	set_pixel(WIDTH, POSITION_FIGURE, z, NULL, d_4, d_2);
+	//	set_pixel(POSITION_FIGURE, HEIGHT, z, d_4, NULL, d_3);
+	//	set_pixel(HEIGHT, WIDTH, z, NULL, NULL, d_4);
+	//
+	//	tracer_rec(&rec, fdf);
+	//	for (int i = 0; i < 45; ++i)
+	//	{
+	//	}
+	//	test(&rec);
+	//	tracer_rec(&rec, fdf);
 
 
 
 	//	mlx_mouse_hook(mlx->window, get_souris_click, &fdf);
 
-//	mlx_loop(mlx->mlx);
+	//	mlx_loop(mlx->mlx);
 	populate_pixel(av[1], fdf);
+	print_pix(fdf);
 
-//	dll_func(fdf->pixel_pile, &print_pix);
+	//	dll_func(fdf->pixel_pile, &print_pix);
 
 
 	destroy_fdf(fdf);
