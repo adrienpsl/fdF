@@ -166,8 +166,8 @@ void test(t_fdf fdf)
 	double deg = degd(50);
 
 	int tmp_x;
-	static int middle_x = (HEIGHT + POSITION_FIGURE) / 2;
-	static int middle_y = (WIDTH + POSITION_FIGURE) / 2;
+	int middle_x = (HEIGHT + POSITION_FIGURE) / 2;
+	int middle_y = (WIDTH + POSITION_FIGURE) / 2;
 
 	for (int i = 0; i < 4; ++i)
 	{
@@ -215,9 +215,9 @@ int main(int ac, char **av)
 
 	//	mlx_loop(mlx->mlx);
 	populate_pixel(av[1], fdf);
-	t_data data;
-	data = &fdf->data;
-	fdf->mlx = new_mlx(data->nb_line * 100, data->nb_col * 100, "FDF");
+//	t_data data;
+//	data = &fdf->data;
+	fdf->mlx = new_mlx(1000, 1000, "FDF");
 	test(fdf);
 	trace_tab(fdf);
 

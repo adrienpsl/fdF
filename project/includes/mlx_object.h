@@ -5,8 +5,8 @@
 #include "mlx_struct.h"
 
 #define POSITION_FIGURE 0
-#define HEIGHT    (POSITION_FIGURE + 25)
-#define WIDTH    (POSITION_FIGURE + 25)
+#define HEIGHT    (POSITION_FIGURE + 50)
+#define WIDTH    (POSITION_FIGURE + 50)
 
 typedef struct s_fig_2_
 {
