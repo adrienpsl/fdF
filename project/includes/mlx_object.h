@@ -4,9 +4,9 @@
 # include "../libft/ft_library_header.h"
 #include "mlx_struct.h"
 
-#define POSITION_FIGURE 200
-#define HEIGHT    (POSITION_FIGURE + 60)
-#define WIDTH    (POSITION_FIGURE + 60)
+#define POSITION_FIGURE 0
+#define HEIGHT    (POSITION_FIGURE + 25)
+#define WIDTH    (POSITION_FIGURE + 25)
 
 typedef struct s_fig_2_
 {
@@ -16,7 +16,6 @@ typedef struct s_fig_2_
 	int y_2;
 	long color;
 } t_fig_2_00;
-
 typedef t_fig_2_00 *t_fig_2;
 
 /*

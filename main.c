@@ -100,32 +100,6 @@ double degd(int d)
 // matrice de rotation du z ?
 // il me faut plus de point pour que ca marche
 
-void test(t_rect rect)
-{
-	t_pixel pixel;
-	double deg = degd(50);
-
-	int tmp_x;
-	static int middle_x = (HEIGHT + POSITION_FIGURE) / 2;
-	static int middle_y = (WIDTH + POSITION_FIGURE) / 2;
-
-	for (int i = 0; i < 4; ++i)
-	{
-		pixel = &rect->pixel[i];
-		pixel->x -= middle_x;
-		pixel->y -= middle_y;
-		pixel->z -= middle_y;
-
-		printf("%f %f \n", pixel->x, pixel->y);
-		tmp_x = pixel->x * cos(deg) - pixel->y * sin(deg);
-		pixel->y = pixel->x * sin(deg) + pixel->y * cos(deg);
-
-		printf("%f %f \n", pixel->x, pixel->y);
-		pixel->x = tmp_x + middle_x;
-		pixel->y += middle_y;
-		printf("%f %f \n\n", pixel->x, pixel->y);
-	}
-}
 
 //int test_souris(int button, int x, int y, void *param)
 //{faire
@@ -184,21 +158,44 @@ void create_mlx(t_fdf fdf)
 	fdf->mlx = new_mlx(data->nb_line, data->nb_col, "FDF");
 }
 
+
+void test(t_fdf fdf)
+{
+	t_pixel tab_pxl = fdf->data.pixel_tab;
+	t_pixel pixel;
+	double deg = degd(50);
+
+	int tmp_x;
+	static int middle_x = (HEIGHT + POSITION_FIGURE) / 2;
+	static int middle_y = (WIDTH + POSITION_FIGURE) / 2;
+
+	for (int i = 0; i < 4; ++i)
+	{
+		pixel = tab_pxl + i;
+		pixel->x -= middle_x;
+		pixel->y -= middle_y;
+		pixel->z -= middle_y;
+
+		printf("%f %f \n", pixel->x, pixel->y);
+		tmp_x = pixel->x * cos(deg) - pixel->y * sin(deg);
+		pixel->y = pixel->x * sin(deg) + pixel->y * cos(deg);
+
+		printf("%f %f \n", pixel->x, pixel->y);
+		pixel->x = tmp_x + middle_x;
+		pixel->y += middle_y;
+		printf("%f %f \n\n", pixel->x, pixel->y);
+	}
+}
+
+
 int main(int ac, char **av)
 {
 	(void) ac;
 	//	t_mlx mlx;
 	t_fdf fdf;
 
-	//	t_rect_00 rec;
-
 	fdf = new_fdf();
 	//	mlx = fdf->mlx;
-	//	t_pixel d_1 = &rec.pixel[0];
-	//	t_pixel d_2 = &rec.pixel[1];
-	//	t_pixel d_3 = &rec.pixel[2];
-	//	t_pixel d_4 = &rec.pixel[3];
-
 
 	//	set_pixel(POSITION_FIGURE, POSITION_FIGURE, z, d_1);
 	//	set_pixel(WIDTH, POSITION_FIGURE, z, NULL, d_4, d_2);
@@ -221,6 +218,7 @@ int main(int ac, char **av)
 	t_data data;
 	data = &fdf->data;
 	fdf->mlx = new_mlx(data->nb_line * 100, data->nb_col * 100, "FDF");
+	test(fdf);
 	trace_tab(fdf);
 
 	mlx_loop(fdf->mlx->ptr);
