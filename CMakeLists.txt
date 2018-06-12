@@ -67,7 +67,7 @@ add_executable(fdf
         ${head}
 
         )
-#target_link_libraries(fdf ${CMAKE_SOURCE_DIR}/../../library/libft.a)
+target_link_libraries(fdf ${CMAKE_SOURCE_DIR}/libft/libft.a)
 target_link_libraries(fdf ${CMAKE_SOURCE_DIR}/mlx/libmlx.a)
 
 target_link_libraries(fdf "-framework OpenGL")

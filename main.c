@@ -58,39 +58,39 @@ void set_pixel(int x, int y, int z, t_pixel pixel)
 	pixel->z = z;
 }
 
-//void trace_rec_utils(t_pixel pixel, t_fdf fdf)
-//{
-//	t_line line;
-//	t_pixel c_pixel;
-//	t_mlx mlx;
-//	line = &fdf->line;
-//	mlx = fdf->mlx;
-//
-//	set_line_1(pixel->x, pixel->y, line);
-//	if (pixel->tab.right)
-//	{
-//		c_pixel = pixel->tab.right;
-//		set_line_2(c_pixel->x, c_pixel->y, line);
-//		trace_line(fdf);
-//		set_line_1(pixel->x, pixel->y, line);
-//	}
-//	if (pixel->tab.bottom)
-//	{
-//		c_pixel = pixel->tab.bottom;
-//		set_line_2(c_pixel->x, c_pixel->y, line);
-//		trace_line(fdf);
-//	}
-//	if (pixel->tab.bottom || pixel->tab.right)
-//		mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
-//}
-//
-//void tracer_rec(t_rect rect, t_fdf fdf)
-//{
-//	for (int i = 0; i < 4; ++i)
-//	{
-//		trace_rec_utils(&rect->pixel[i], fdf);
-//	}
-//}
+void trace_rec_utils(t_pixel pixel, t_fdf fdf)
+{
+	t_line line;
+	t_pixel c_pixel;
+	t_mlx mlx;
+	line = &fdf->line;
+	mlx = fdf->mlx;
+
+	set_line_1(pixel->x, pixel->y, line);
+	if (pixel->tab.right)
+	{
+		c_pixel = pixel->tab.right;
+		set_line_2(c_pixel->x, c_pixel->y, line);
+		trace_line(fdf);
+		set_line_1(pixel->x, pixel->y, line);
+	}
+	if (pixel->tab.bottom)
+	{
+		c_pixel = pixel->tab.bottom;
+		set_line_2(c_pixel->x, c_pixel->y, line);
+		trace_line(fdf);
+	}
+	if (pixel->tab.bottom || pixel->tab.right)
+		mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
+}
+
+void tracer_rec(t_rect rect, t_fdf fdf)
+{
+	for (int i = 0; i < 4; ++i)
+	{
+		trace_rec_utils(&rect->pixel[i], fdf);
+	}
+}
 
 double degd(int d)
 {
@@ -155,37 +155,37 @@ void test(t_rect rect)
 int main(int ac, char **av)
 {
 	(void)ac;
-//	t_mlx mlx;
+	t_mlx mlx;
 	t_fdf fdf;
 
-//	t_rect_00 rec;
+	t_rect_00 rec;
 
 	fdf = new_fdf();
-//	mlx = fdf->mlx;
-//	t_pixel d_1 = &rec.pixel[0];
-//	t_pixel d_2 = &rec.pixel[1];
-//	t_pixel d_3 = &rec.pixel[2];
-//	t_pixel d_4 = &rec.pixel[3];
-
-
-//	set_pixel(POSITION_FIGURE, POSITION_FIGURE, z, d_1);
-//	set_pixel(WIDTH, POSITION_FIGURE, z, NULL, d_4, d_2);
-//	set_pixel(POSITION_FIGURE, HEIGHT, z, d_4, NULL, d_3);
-//	set_pixel(HEIGHT, WIDTH, z, NULL, NULL, d_4);
+	mlx = fdf->mlx;
+	t_pixel d_1 = &rec.pixel[0];
+	t_pixel d_2 = &rec.pixel[1];
+	t_pixel d_3 = &rec.pixel[2];
+	t_pixel d_4 = &rec.pixel[3];
 //
+
+	set_pixel(POSITION_FIGURE, POSITION_FIGURE, z, d_1);
+	set_pixel(WIDTH, POSITION_FIGURE, z, NULL, d_4, d_2);
+	set_pixel(POSITION_FIGURE, HEIGHT, z, d_4, NULL, d_3);
+	set_pixel(HEIGHT, WIDTH, z, NULL, NULL, d_4);
+
 //	tracer_rec(&rec, fdf);
 //	for (int i = 0; i < 45; ++i)
 //	{
 //	}
-//	test(&rec);
-//	tracer_rec(&rec, fdf);
+	test(&rec);
+	tracer_rec(&rec, fdf);
 
 
 
 	//	mlx_mouse_hook(mlx->window, get_souris_click, &fdf);
 
 //	mlx_loop(mlx->mlx);
-	populate_pixel(av[1], fdf);
+//	populate_pixel(av[1], fdf);
 
 
 	destroy_fdf(fdf);
