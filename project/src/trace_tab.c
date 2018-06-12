@@ -21,30 +21,33 @@
 
 #define dist 50;
 
-void set_d_line(t_pixel pxl_1, t_pixel pxl_2, t_trace trace)
+void set_d_line(t_pixel pxl_1, t_pixel pxl_2, t_fdf fdf)
 {
 	t_line line;
 
-	line = &trace->draw_l;
+	line = &fdf->line;
 	line->x_1 = pxl_1->x * dist;
 	line->y_1 = pxl_1->y * dist;
-	line->x_1 = pxl_2->x * dist;
-	line->y_1 = pxl_2->y * dist;
+	line->x_2 = pxl_2->x * dist;
+	line->y_2 = pxl_2->y * dist;
 }
 
 // si le prochain match trace un trait
-int trace_horizon(t_fdf fdf, t_trace trace)
+int trace_horizon(t_fdf fdf)
 {
 	set_d_line(fdf->pixel_tab + fdf->all_pxl, fdf->pixel_tab + fdf->all_pxl + 1,
-			   trace);
+			   fdf);
+	//	ft_printf("%d \n", trace.);
+	trace_line(fdf);
 
 	return (TRUE);
 }
 
-int trace_vertical(t_fdf fdf, t_trace trace)
+int trace_vertical(t_fdf fdf)
 {
 	set_d_line(fdf->pixel_tab, fdf->pixel_tab + fdf->nb_line,
-			   trace);
+			   fdf);
+	trace_line(fdf);
 	return (TRUE);
 }
 
@@ -62,17 +65,24 @@ int trace_tab(t_fdf fdf)
 	while (trace.line < fdf->nb_line)
 	{
 		// je regarde si right
-		if (trace.col < fdf->nb_col)
-			trace_vertical(fdf, &trace);
+//		if (trace.col < fdf->nb_col)
+//			trace_horizon(fdf);
 		// je regarde si bottom
-		if (trace.linee < fdf->nb_line);
-
+		if (trace.line < fdf->nb_line)
+			trace_vertical(fdf);
 		++trace.col;
+		mlx_put_image_to_window(fdf->mlx->mlx, fdf->mlx->window, fdf->mlx->img, 50,
+		 							50);
+		mlx_loop(fdf->mlx->mlx);
+
 		if (trace.col == fdf->nb_col)
 		{
 			++trace.line;
 			trace.col = 0;
 		}
+		fdf->all_pxl++;
 	}
+//	mlx_put_image_to_window(fdf->mlx->mlx, fdf->mlx->window, fdf->mlx->img, 50,
+//							50);
 	return (1);
 }

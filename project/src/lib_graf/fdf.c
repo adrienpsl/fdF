@@ -14,8 +14,8 @@
 
 t_fdf destroy_fdf(t_fdf fdf)
 {
-	if (fdf->pixel_tab)
-	    free(fdf->pixel_tab);
+	if (fdf->data.pixel_tab)
+	    free(fdf->data.pixel_tab);
 	free(fdf);
 	return (fdf);
 }
@@ -26,9 +26,7 @@ t_fdf new_fdf()
 	t_fdf fdf;
 
 	fdf = ft_malloc_protect(sizeof(t_fdf_00));
-	ft_memset(fdf, 0, sizeof(fdf));
-
-//	fdf->mlx = new_mlx(1000, 1000, "lala");
+	ft_memset(fdf, 0, sizeof(t_fdf_00));
 	return (fdf);
 }
 

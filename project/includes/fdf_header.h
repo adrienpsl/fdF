@@ -9,6 +9,13 @@
 # define Y 1
 # define Z 2
 
+
+/*
+**    test function
+*/
+int trace_tab(t_fdf fdf);
+
+
 t_mlx new_mlx(int x, int y, char *name);
 t_fdf new_fdf();
 t_fdf destroy_fdf(t_fdf fdf);

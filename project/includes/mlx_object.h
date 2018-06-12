@@ -2,28 +2,11 @@
 #define FDF_STRUCT_H
 
 # include "../libft/ft_library_header.h"
+#include "mlx_struct.h"
 
 #define POSITION_FIGURE 200
 #define HEIGHT    (POSITION_FIGURE + 60)
 #define WIDTH    (POSITION_FIGURE + 60)
-
-typedef struct s_coord_
-{
-	int x_1;
-	int y_1;
-	int x_2;
-	int y_2;
-} t_coord_;
-
-typedef t_coord_ *t_coord;
-
-typedef struct s_color_
-{
-	int quick;
-	long color;
-} t_color_;
-
-typedef t_color_ *t_color;
 
 typedef struct s_fig_2_
 {
@@ -36,6 +19,9 @@ typedef struct s_fig_2_
 
 typedef t_fig_2_00 *t_fig_2;
 
+/*
+**    stock les coord de tous les pxl, stocker sous forme de tab
+*/
 typedef struct s_pixel_00
 {
 	double x;
@@ -43,37 +29,23 @@ typedef struct s_pixel_00
 	double z;
 	int color;
 } t_pixel_00;
-
 typedef t_pixel_00 *t_pixel;
 
-typedef struct s_rec_link_00
+
+typedef struct		s_data_00
 {
-	long nb_quick;
-	int color;
-	int min;
-	int max;
-	int quick;
-	float percent;
-} t_rec_link_00;
+	t_pixel pixel_tab;
+	int nb_col;
+	int nb_line;
+	long pxl_where;
+} 					t_data_00;
+typedef t_data_00 *t_data;
 
-typedef t_rec_link_00 *t_rec_link;
-
-typedef struct s_mlx_00
-{
-	void *window;
-	void *mlx;
-	int x;
-	int y;
-	void *img;
-	void *str_img;
-} t_mlx_00;
-
-typedef t_mlx_00 *t_mlx;
 
 /*
 **    lines
 */
-typedef struct s_line_
+typedef struct s_line_00
 {
 	int x_1;
 	int y_1;
@@ -82,17 +54,14 @@ typedef struct s_line_
 	int dx;
 	int dy;
 	int e;
-} t_line_00;
 
+} t_line_00;
 typedef t_line_00 *t_line;
 
 typedef struct s_fdf_00
 {
 	t_mlx mlx;
-	t_pixel pixel_tab;
-	int nb_line;
-	int nb_col;
-	long all_pxl;
+	t_data_00 data;
 	t_line_00 line;
 } t_fdf_00;
 
@@ -112,16 +81,6 @@ typedef struct s_fdf_get_00
 } t_fdf_get_00;
 
 typedef t_fdf_get_00 *t_fdf_get;
-
-typedef struct		s_trace_00
-{
-	t_line_00 draw_l;
-	int col;
-	int line;
-	long where;
-} 					t_trace_00;
-
-typedef t_trace_00 *t_trace;
 
 
 #endif //FDF_STRUCT_H

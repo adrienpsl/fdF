@@ -210,7 +210,14 @@ int main(int ac, char **av)
 
 	//	mlx_loop(mlx->mlx);
 	populate_pixel(av[1], fdf);
-	print_pix(fdf);
+
+
+	fdf->mlx = new_mlx(1000, 1000, "lala");
+
+	trace_tab(fdf);
+	//	fdf->mlx->y = fdf->nb_col;
+	mlx_loop(fdf->mlx->mlx);
+	//	print_pix(fdf);
 
 	//	dll_func(fdf->pixel_pile, &print_pix);
 

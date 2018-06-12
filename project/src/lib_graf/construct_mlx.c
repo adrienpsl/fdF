@@ -12,25 +12,41 @@
 
 #include "../../includes/fdf_header.h"
 
-t_mlx new_mlx(int x, int y, char *name)
+void init_window(int x, int y, char name, t_mlx mlx)
+{
+	t_window window;
+
+	window->ptr = mlx_new_window(mlx->ptr, x, y, name);
+	raise_errno(mlx->ptr);
+	window = &mlx->window;
+	window->nb_pixel_x = x;
+	window->nb_pixel_y = y;
+}
+
+void init_img(int x, int y, t_mlx mlx)
 {
 	int a;
 	int b;
 	int c;
+	t_img img;
+
+	img = &mlx->img;
+	img->ptr = mlx_new_image(mlx->ptr, x, y);
+	raise_errno(img->str);
+	img->str = mlx_get_data_addr(img->ptr, &a, &b, &c);
+	raise_errno(img->str);
+	mlx->img.size_ligne = x;
+}
+
+t_mlx new_mlx(int x, int y, char *name)
+{
+
 	t_mlx mlx;
 
 	mlx = ft_malloc_protect(sizeof(t_mlx_00));
-	mlx->mlx = mlx_init();
-	if (mlx->mlx == NULL)
-		errno_exit();
-	mlx->x = x - 25;
-	mlx->y = y - 25;
-	mlx->window = mlx_new_window(mlx->mlx, x, y, name);
-	if (mlx->window == NULL)
-		errno_exit();
-	mlx->img = mlx_new_image(mlx->mlx, x - 25, y - 25);
-	if (mlx->img == NULL)
-		errno_exit();
-	mlx->str_img = mlx_get_data_addr(mlx->img, &a, &b, &c);
+	mlx->ptr = mlx_init();
+	raise_errno(mlx->ptr);
+	init_window(x, y, name, mlx);
+	init_img(x, y, mlx);
 	return (mlx);
 }

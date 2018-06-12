@@ -18,7 +18,7 @@ void		fill_pixel(t_mlx mlx, long x, long y, int color)
 	char *img;
 
 	img = mlx->str_img;
-	y = (x * 4) + (4 * y * mlx->y);
+	y = (x * 4) + (4 * y * 1000);
 	img[y] = color & 0xff;
 	img[y + 1] = color >> 8 & 0xff;
 	img[y + 2] = color >> 16;
