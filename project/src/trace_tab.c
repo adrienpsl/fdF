@@ -51,7 +51,8 @@ int trace_vertical(t_fdf fdf)
 	t_data data;
 
 	data = &fdf->data;
-	set_d_line(data->pixel_tab, data->pixel_tab + data->nb_line,
+	set_d_line(data->pixel_tab + data->pxl_where,
+			   data->pixel_tab +  data->pxl_where + data->nb_line,
 			   fdf);
 	trace_line(fdf);
 	return (TRUE);
@@ -73,10 +74,10 @@ int trace_tab(t_fdf fdf)
 	while (line < data->nb_line)
 	{
 		// je regarde si right
-		if (col < data->nb_col)
+		if (col < data->nb_col - 1)
 			trace_horizon(fdf);
 		// je regarde si bottom
-		if (line < data->nb_line)
+		if (line < data->nb_line - 1)
 			trace_vertical(fdf);
 		++col;
 		if (col == data->nb_col)
