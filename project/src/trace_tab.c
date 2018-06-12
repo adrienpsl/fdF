@@ -19,7 +19,7 @@
 //	return (*(pixel + (sizeof(double) * xyz)));
 //}
 
-#define dist 50;
+#define dist 1 ;
 
 void set_d_line(t_pixel pxl_1, t_pixel pxl_2, t_fdf fdf)
 {
@@ -74,8 +74,8 @@ int trace_tab(t_fdf fdf)
 	while (line < data->nb_line)
 	{
 		// je regarde si right
-		if (col < data->nb_col - 1)
-			trace_horizon(fdf);
+//		if (col < data->nb_col - 1)
+//			trace_horizon(fdf);
 		// je regarde si bottom
 		if (line < data->nb_line - 1)
 			trace_vertical(fdf);

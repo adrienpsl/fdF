@@ -163,18 +163,20 @@ void test(t_fdf fdf)
 {
 	t_pixel tab_pxl = fdf->data.pixel_tab;
 	t_pixel pixel;
-	double deg = degd(50);
+	double deg = degd(45);
 
-	int tmp_x;
-	int middle_x = (HEIGHT + POSITION_FIGURE) / 2;
-	int middle_y = (WIDTH + POSITION_FIGURE) / 2;
+	double tmp_x;
+	int middle_x = 500;
+//	int middle_x = 0;
+	int middle_y = 500;
+//	int middle_y = 0;
 
 	for (int i = 0; i < 4; ++i)
 	{
 		pixel = tab_pxl + i;
-		pixel->x -= middle_x;
-		pixel->y -= middle_y;
-		pixel->z -= middle_y;
+		pixel->x -= 500;
+		pixel->y -= 500;
+//		pixel->z -= middle_y;
 
 		printf("%f %f \n", pixel->x, pixel->y);
 		tmp_x = pixel->x * cos(deg) - pixel->y * sin(deg);

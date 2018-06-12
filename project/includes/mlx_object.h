@@ -4,7 +4,7 @@
 # include "../libft/ft_library_header.h"
 #include "mlx_struct.h"
 
-#define POSITION_FIGURE 0
+#define POSITION_FIGURE 100
 #define HEIGHT    (POSITION_FIGURE + 50)
 #define WIDTH    (POSITION_FIGURE + 50)
 

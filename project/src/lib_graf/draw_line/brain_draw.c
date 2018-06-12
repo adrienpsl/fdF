@@ -86,4 +86,5 @@ void trace_line(t_fdf fdf)
 		else
 			dx_0_dy_n(fdf);
 	}
+	fill_pixel(fdf->mlx, line->x_1, line->y_1, 0xFFFFFF);
 }
