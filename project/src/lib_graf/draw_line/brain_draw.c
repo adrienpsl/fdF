@@ -68,8 +68,6 @@ void trace_line(t_fdf fdf)
 {
 	t_line line;
 
-
-	// set dx
 	line = &fdf->line;
 	line->dx = line->x_2 - line->x_1;
 	line->dy = line->y_2 - line->y_1;

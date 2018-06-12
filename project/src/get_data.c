@@ -92,8 +92,8 @@ void populate_pixel(char *name, t_fdf fdf)
 	}
 	free_str(&get.line);
 
-	fdf->nb_col = get.nb_col;
-	fdf->nb_line = get.nb_line;
-	fdf->pixel_tab = get.pixel_tab;
+	fdf->data.nb_col = get.nb_col;
+	fdf->data.nb_line = get.nb_line;
+	fdf->data.pixel_tab = get.pixel_tab;
 	close(get.fd);
 }

@@ -13,36 +13,36 @@
 #include <math.h>
 #include "project/includes/fdf_header.h"
 
-int get_souris_click(int button, int x, int y, void *param)
-{
-	static int i = 0;
-	t_fdf fdf = param;
-	t_mlx mlx = fdf->mlx;
-	t_line line = &fdf->line;
-
-	(void) button;
-	if (i == 0)
-	{
-		set_line_1(x, y, line);
-		++i;
-	}
-
-	else if (i == 1)
-	{
-		set_line_2(x, y, line);
-		++i;
-	}
-
-	if (i == 2)
-	{
-		trace_line(fdf);
-		mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
-		i = 0;
-	}
-	//	ft_printf("%d \n", button);
-
-	return (TRUE);
-}
+//int get_souris_click(int button, int x, int y, void *param)
+//{
+//	static int i = 0;
+//	t_fdf fdf = param;
+//	t_mlx mlx = fdf->mlx;
+//	t_line line = &fdf->line;
+//
+//	(void) button;
+//	if (i == 0)
+//	{
+//		set_line_1(x, y, line);
+//		++i;
+//	}
+//
+//	else if (i == 1)
+//	{
+//		set_line_2(x, y, line);
+//		++i;
+//	}
+//
+//	if (i == 2)
+//	{
+//		trace_line(fdf);
+//		mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
+//		i = 0;
+//	}
+//	//	ft_printf("%d \n", button);
+//
+//	return (TRUE);
+//}
 
 typedef struct s_rect_00
 {
@@ -155,13 +155,13 @@ void print_pix(t_fdf fdf)
 {
 	t_pixel pixel;
 	int i = 0;
-	int all = fdf->nb_line * fdf->nb_col;
+	int all = fdf->data.nb_line * fdf->data.nb_line;
 	static int x = 0;
 	static int y = 0;
 
 	while (i < all)
 	{
-		pixel = fdf->pixel_tab + i;
+		pixel = fdf->data.pixel_tab + i;
 		printf("%.0f ", pixel->x);
 		printf("%.0f ", pixel->y);
 		printf("%.0f // ", pixel->z);
@@ -174,6 +174,14 @@ void print_pix(t_fdf fdf)
 		}
 		i++;
 	}
+}
+
+void create_mlx(t_fdf fdf)
+{
+	t_data data;
+
+	data = &fdf->data;
+	fdf->mlx = new_mlx(data->nb_line, data->nb_col, "FDF");
 }
 
 int main(int ac, char **av)
@@ -210,13 +218,15 @@ int main(int ac, char **av)
 
 	//	mlx_loop(mlx->mlx);
 	populate_pixel(av[1], fdf);
-
-
-	fdf->mlx = new_mlx(1000, 1000, "lala");
-
+	t_data data;
+	data = &fdf->data;
+	fdf->mlx = new_mlx(data->nb_line * 100, data->nb_col * 100, "FDF");
 	trace_tab(fdf);
+
+	mlx_loop(fdf->mlx->ptr);
+
+
 	//	fdf->mlx->y = fdf->nb_col;
-	mlx_loop(fdf->mlx->mlx);
 	//	print_pix(fdf);
 
 	//	dll_func(fdf->pixel_pile, &print_pix);

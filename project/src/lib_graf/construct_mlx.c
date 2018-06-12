@@ -12,13 +12,13 @@
 
 #include "../../includes/fdf_header.h"
 
-void init_window(int x, int y, char name, t_mlx mlx)
+void init_window(int x, int y, char *name, t_mlx mlx)
 {
 	t_window window;
 
-	window->ptr = mlx_new_window(mlx->ptr, x, y, name);
-	raise_errno(mlx->ptr);
 	window = &mlx->window;
+	window->ptr = mlx_new_window(mlx->ptr, x, y, name);
+	raise_errno(window->ptr);
 	window->nb_pixel_x = x;
 	window->nb_pixel_y = y;
 }
@@ -32,7 +32,7 @@ void init_img(int x, int y, t_mlx mlx)
 
 	img = &mlx->img;
 	img->ptr = mlx_new_image(mlx->ptr, x, y);
-	raise_errno(img->str);
+	raise_errno(img->ptr);
 	img->str = mlx_get_data_addr(img->ptr, &a, &b, &c);
 	raise_errno(img->str);
 	mlx->img.size_ligne = x;
@@ -40,7 +40,6 @@ void init_img(int x, int y, t_mlx mlx)
 
 t_mlx new_mlx(int x, int y, char *name)
 {
-
 	t_mlx mlx;
 
 	mlx = ft_malloc_protect(sizeof(t_mlx_00));
@@ -48,5 +47,6 @@ t_mlx new_mlx(int x, int y, char *name)
 	raise_errno(mlx->ptr);
 	init_window(x, y, name, mlx);
 	init_img(x, y, mlx);
+
 	return (mlx);
 }
