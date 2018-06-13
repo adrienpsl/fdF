@@ -15,21 +15,31 @@
 // bcq moins chiant de le faire en faisaint poiter les trucs.
 
 //double get_coord_pxl(t_pixel pixel, int xyz)
-//{
+//{œ
 //	return (*(pixel + (sizeof(double) * xyz)));
 //}
 
-#define dist 1 ;
+#define dist 100 ;
 
 void set_d_line(t_pixel pxl_1, t_pixel pxl_2, t_fdf fdf)
 {
 	t_line line;
+	static int  a = 0;
+	static int b = dist;
+	a++;
 
+	if (a == 8)
+	{
+		b += dist;
+		ft_printf("%d  %d\n", b, a);
+		a = 0;
+	}
 	line = &fdf->line;
 	line->x_1 = pxl_1->x * dist;
 	line->y_1 = pxl_1->y * dist;
 	line->x_2 = pxl_2->x * dist;
 	line->y_2 = pxl_2->y * dist;
+	printf("--%d %d %d %d-- \n", line->x_1, line->y_1, line->x_2,line->y_2 );
 }
 
 // si le prochain match trace un trait
@@ -74,8 +84,8 @@ int trace_tab(t_fdf fdf)
 	while (line < data->nb_line)
 	{
 		// je regarde si right
-//		if (col < data->nb_col - 1)
-//			trace_horizon(fdf);
+		if (col < data->nb_col - 1)
+			trace_horizon(fdf);
 		// je regarde si bottom
 		if (line < data->nb_line - 1)
 			trace_vertical(fdf);
@@ -87,7 +97,6 @@ int trace_tab(t_fdf fdf)
 		}
 		data->pxl_where++;
 	}
-	mlx_put_image_to_window(fdf->mlx->ptr, fdf->mlx->window.ptr,
-	fdf->mlx->img.ptr, 0, 0);
+	data->pxl_where = 0;
 	return (1);
 }

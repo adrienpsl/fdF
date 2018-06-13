@@ -26,8 +26,8 @@ void add_pixel_link(t_fdf_get get)
 	if (ft_is_all_number(z_str) == FALSE)
 		ft_error("z is not number\n");
 	pixel = &get->pixel_tab[get->pos_tab];
-	pixel->x = (get->x * 100) + 500;
-	pixel->y = (get->y * 100) + 500;
+	pixel->x = (get->x)  ;
+	pixel->y = (get->y) ;
 	pixel->z = ft_atoi(z_str);
 	pixel->color = 0xFFFFFF;
 	get->pos_tab++;

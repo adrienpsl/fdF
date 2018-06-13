@@ -24,7 +24,6 @@ void dx_n_dy_p(t_fdf fdf)
 	while (l->x_1 != l->x_2)
 	{
 		fill_pixel(fdf->mlx, l->x_1, l->y_1, 0xFFFFFF);
-		ft_printf("%d %d\n", l->x_1, l->y_1);
 		if ((l->e += l->dy) >= 0)
 		{
 			++l->y_1;

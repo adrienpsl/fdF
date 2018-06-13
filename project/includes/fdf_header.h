@@ -11,27 +11,37 @@
 
 
 /*
+**    fdf ------------------------------------------------------
+*/
+t_fdf new_fdf();
+t_fdf destroy_fdf(t_fdf fdf);
+
+/*
 **    test function
 */
 int trace_tab(t_fdf fdf);
 
 
-t_mlx new_mlx(int x, int y, char *name);
-t_fdf new_fdf();
-t_fdf destroy_fdf(t_fdf fdf);
-
-void fill_pixel(t_mlx mlx, long x, long y, int color);
-
-/*
-**    line
-*/
-void set_line_1(int x, int y, t_line l);
-void set_line_2(int x, int y, t_line l);
-
 /*
 **    getter data
 */
 void populate_pixel(char *name, t_fdf fdf);
+
+
+/*
+**    mlx -------------------------------------------------
+*/
+t_mlx new_mlx(int x, int y, char *name);
+void clear_img(t_mlx mlx);
+
+
+
+
+/*
+**    grafique lib --------------------------------------------
+*/
+
+void fill_pixel(t_mlx mlx, long x, long y, int color);
 
 /*
 **    draw line

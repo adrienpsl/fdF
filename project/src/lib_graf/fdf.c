@@ -29,4 +29,3 @@ t_fdf new_fdf()
 	ft_memset(fdf, 0, sizeof(t_fdf_00));
 	return (fdf);
 }
-

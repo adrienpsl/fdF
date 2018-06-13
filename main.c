@@ -157,7 +157,7 @@ void create_mlx(t_fdf fdf)
 	data = &fdf->data;
 	fdf->mlx = new_mlx(data->nb_line, data->nb_col, "FDF");
 }
-
+// je dois calculer la distance de mon pxl
 
 void test(t_fdf fdf)
 {
@@ -166,25 +166,26 @@ void test(t_fdf fdf)
 	double deg = degd(45);
 
 	double tmp_x;
-	int middle_x = 500;
-//	int middle_x = 0;
-	int middle_y = 500;
-//	int middle_y = 0;
+//	int middle_x = 500;
+	int middle_x = 50;
+//	int middle_y = 500;
+	int middle_y = 50;
 
 	for (int i = 0; i < 4; ++i)
 	{
 		pixel = tab_pxl + i;
-		pixel->x -= 500;
-		pixel->y -= 500;
+		pixel->x += middle_x;
+		pixel->y += middle_y;
 //		pixel->z -= middle_y;
 
 		printf("%f %f \n", pixel->x, pixel->y);
 		tmp_x = pixel->x * cos(deg) - pixel->y * sin(deg);
+		printf("%f %f \n",  cos(deg), sin(deg));
 		pixel->y = pixel->x * sin(deg) + pixel->y * cos(deg);
 
 		printf("%f %f \n", pixel->x, pixel->y);
-		pixel->x = tmp_x + middle_x;
-		pixel->y += middle_y;
+		pixel->x = tmp_x - middle_x;
+		pixel->y -= middle_y;
 		printf("%f %f \n\n", pixel->x, pixel->y);
 	}
 }
@@ -193,36 +194,22 @@ void test(t_fdf fdf)
 int main(int ac, char **av)
 {
 	(void) ac;
-	//	t_mlx mlx;
 	t_fdf fdf;
 
 	fdf = new_fdf();
-	//	mlx = fdf->mlx;
-
-	//	set_pixel(POSITION_FIGURE, POSITION_FIGURE, z, d_1);
-	//	set_pixel(WIDTH, POSITION_FIGURE, z, NULL, d_4, d_2);
-	//	set_pixel(POSITION_FIGURE, HEIGHT, z, d_4, NULL, d_3);
-	//	set_pixel(HEIGHT, WIDTH, z, NULL, NULL, d_4);
-	//
-	//	tracer_rec(&rec, fdf);
-	//	for (int i = 0; i < 45; ++i)
-	//	{
-	//	}
-	//	test(&rec);
-	//	tracer_rec(&rec, fdf);
-
-
+	populate_pixel(av[1], fdf);
+	fdf->mlx = new_mlx(1000, 1000, "FDF");
 
 	//	mlx_mouse_hook(mlx->window, get_souris_click, &fdf);
-
-	//	mlx_loop(mlx->mlx);
-	populate_pixel(av[1], fdf);
-//	t_data data;
-//	data = &fdf->data;
-	fdf->mlx = new_mlx(1000, 1000, "FDF");
+	//	t_data data;
+	//	data = &fdf->data;
+//	trace_tab(fdf);
 	test(fdf);
 	trace_tab(fdf);
-
+	print_pix(fdf);
+//	trace_tab(fdf);
+	mlx_put_image_to_window(fdf->mlx->ptr, fdf->mlx->window.ptr,
+							fdf->mlx->img.ptr, 0, 0);
 	mlx_loop(fdf->mlx->ptr);
 
 

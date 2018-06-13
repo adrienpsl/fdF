@@ -38,6 +38,12 @@ void init_img(int x, int y, t_mlx mlx)
 	mlx->img.size_ligne = x;
 }
 
+void clear_img(t_mlx mlx)
+{
+	ft_memset(&mlx->img.str, 0, mlx->window.nb_pixel_x *
+								mlx->window.nb_pixel_y);
+}
+
 t_mlx new_mlx(int x, int y, char *name)
 {
 	t_mlx mlx;
