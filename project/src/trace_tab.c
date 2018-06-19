@@ -19,7 +19,13 @@
 //	return (*(pixel + (sizeof(double) * xyz)));
 //}
 
-#define dist 100 ;
+#define dist 100
+
+int     set(int a)
+{
+	return (a * dist) + 500;
+}
+
 
 void set_d_line(t_pixel pxl_1, t_pixel pxl_2, t_fdf fdf)
 {
@@ -35,10 +41,10 @@ void set_d_line(t_pixel pxl_1, t_pixel pxl_2, t_fdf fdf)
 		a = 0;
 	}
 	line = &fdf->line;
-	line->x_1 = pxl_1->x * dist;
-	line->y_1 = pxl_1->y * dist;
-	line->x_2 = pxl_2->x * dist;
-	line->y_2 = pxl_2->y * dist;
+	line->x_1 = set(pxl_1->x);
+	line->y_1 = set(pxl_1->y);
+	line->x_2 = set(pxl_2->x);
+	line->y_2 = set(pxl_2->y);
 	printf("--%d %d %d %d-- \n", line->x_1, line->y_1, line->x_2,line->y_2 );
 }
 

@@ -158,6 +158,7 @@ void create_mlx(t_fdf fdf)
 	fdf->mlx = new_mlx(data->nb_line, data->nb_col, "FDF");
 }
 // je dois calculer la distance de mon pxl
+// j'envie ce truc dans les pixels
 
 void test(t_fdf fdf)
 {
@@ -204,7 +205,7 @@ int main(int ac, char **av)
 	//	t_data data;
 	//	data = &fdf->data;
 //	trace_tab(fdf);
-	test(fdf);
+//	test(fdf);
 	trace_tab(fdf);
 	print_pix(fdf);
 //	trace_tab(fdf);

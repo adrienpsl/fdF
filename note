@@ -26,3 +26,10 @@ je sais faire des trait dans tout les sens
 
 -> c'est quoi la diff qui est appliquer ?
 
+
+il divise par la taille de l'objet le truc qui fait la rotation,
+
+
+
+je veux calculer a chaque fois les mouvements de mon point,
+    si j'ai 0, ca m'empeche de faire correctement la rotation, ?
