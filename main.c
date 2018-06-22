@@ -177,7 +177,7 @@ void test(t_fdf fdf)
 		pixel = tab_pxl + i;
 		pixel->x += middle_x;
 		pixel->y += middle_y;
-//		pixel->z -= middle_y;
+	//		pixel->z -= middle_y;
 
 		printf("%f %f \n", pixel->x, pixel->y);
 		tmp_x = pixel->x * cos(deg) - pixel->y * sin(deg);
