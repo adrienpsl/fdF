@@ -2,7 +2,7 @@
 #define FDF_STRUCT_H
 
 # include "../libft/ft_library_header.h"
-#include "../src/include/graf_struct.h"
+#include "../../../lib_grafik/project/include/graf_struct.h"
 
 typedef struct		s_data_00
 {

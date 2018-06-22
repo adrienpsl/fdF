@@ -95,25 +95,7 @@ add_executable(
 #*------------------------------------*\
 #    --  LINK OTHER LIB  --
 #*------------------------------------*/
-#target_link_libraries(push_swap ${CMAKE_SOURCE_DIR}/lib/mlx/libmlx.a)
-#target_link_libraries(push_swap "-framework OpenGL")
-#target_link_libraries(push_swap "-framework AppKit")
-
-
 target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/mlx/libmlx.a)
 
 target_link_libraries(${PROJECT_NAME} "-framework OpenGL")
 target_link_libraries(${PROJECT_NAME} "-framework AppKit")
-
-#add_library(mlx STATIC IMPORTED)
-#set_property(TARGET mlx PROPERTY IMPORTED_LOCATION ./mlx/libmlx.a)
-
-
-#add_library(lib STATIC IMPORTED)
-#set_property(TARGET lib PROPERTY IMPORTED_LOCATION ../../library/sources/libft.a)
-
-
-#INCLUDE_DIRECTORIES(./mlx)
-#LINK_DIRECTORIES(./mlx)
-#
-#target_link_libraries (fdf mlx/libmlx.a)
