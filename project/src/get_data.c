@@ -23,7 +23,7 @@ void add_pixel_link(t_fdf_get get)
 	static t_pixel pixel = NULL;
 
 	z_str = get->split->current;
-	if (ft_is_all_number(z_str) == FALSE)
+	if (is_all_number(z_str) == FALSE)
 		ft_error("z is not number\n");
 	pixel = &get->pixel_tab[get->pos_tab];
 	pixel->x = (get->x)  ;

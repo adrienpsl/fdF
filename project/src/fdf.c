@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/fdf_header.h"
+#include "../includes/fdf_header.h"
 
 t_fdf destroy_fdf(t_fdf fdf)
 {
