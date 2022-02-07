@@ -4,7 +4,7 @@ de realiser des opetations comme tout la ligne multiplier par
 la colomne.
 
 * un repere de 4 * 4, chaque ligne est dans la matrice 
-{ lllll 
+{ llll 
    llll
    }  
 
